@@ -1,0 +1,15 @@
+import React, { Fragment } from 'react'
+import { Button } from 'react-bootstrap'
+
+// Styling
+import "./Buttons.css";
+
+const Buttons = ({title, className, ...rest}) => {
+    return (
+        <Fragment>
+            <Button variant="danger" className={className} {...rest}>{title}</Button>{' '}
+        </Fragment>
+    )
+}
+
+export default Buttons

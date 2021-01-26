@@ -1,0 +1,13 @@
+.landing{
+    height: 100vh;
+    background-image: url('../../assets/images/background.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.desc-landing{
+    margin-top: -80px;
+    font-weight: 400;
+    font-size: 24px;
+}
