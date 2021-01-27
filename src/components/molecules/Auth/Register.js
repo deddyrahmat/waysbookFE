@@ -2,10 +2,9 @@ import React, { Fragment, useState, useContext, useEffect } from 'react'
 import { Col, Container, Form, Modal, Row } from 'react-bootstrap';
 
 // component
-import {Buttons, Forms} from '../../';// same ../../index.js take file Buttons
+import {Buttons, Inputs} from '../../';// same ../../index.js take file Buttons
 import {AppContext} from '../../../configs';
 
-// import Login from './Login';
 
 // styling
 import "./Auth.css";
@@ -58,9 +57,9 @@ const Register = ({titleModal, classModalButton  }) => {
                             <Col md="12">
                                 <h2 className="title-modal">{titleModal}</h2>
                                 <Form>
-                                    <Forms type="email" placeholder="Email" />
-                                    <Forms type="password" placeholder="Password" />
-                                    <Forms type="text" placeholder="Full Name" />
+                                    <Inputs type="email" placeholder="Email" />
+                                    <Inputs type="password" placeholder="Password" />
+                                    <Inputs type="text" placeholder="Full Name" />
                                     <Buttons className="buttons-red btn-block font-weight-bold mt-2 mb-2"  type="submit" title={titleModal} />
                                 </Form>
                                 <div className="text-link">

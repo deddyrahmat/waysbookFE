@@ -1,4 +1,4 @@
 import Buttons from './Buttons';
-import Forms from './Forms';
+import Inputs from './Inputs';
 
-export {Buttons, Forms};
+export {Buttons, Inputs};

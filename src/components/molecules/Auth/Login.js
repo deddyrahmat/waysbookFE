@@ -3,7 +3,7 @@ import { Col, Container, Form, Modal, Row } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 
 // component
-import {Buttons, Forms} from '../../';// same ../../index.js take file Buttons
+import {Buttons, Inputs} from '../../';// same ../../index.js take file Buttons
 import {AppContext} from '../../../configs';
 
 // json Fake Data
@@ -75,7 +75,6 @@ const Login = ({titleModal, classModalButton, ...rest  }) => {
     const {email, password} = formData;
 
     const handleChangeLogin=(e)=> {
-        // setFormData({ ...formData, [e.target.name]: e.target.value });
         setFormData({
             ...formData, [e.target.name]: e.target.value
         });
@@ -86,7 +85,6 @@ const Login = ({titleModal, classModalButton, ...rest  }) => {
 
         // filter FakeData Users
         let user = users.filter(data => data.email === email && data.password === password)
-        console.log(user);
         // cek Auth User
         if (user.length > 0) {
             dispatch({
@@ -113,8 +111,8 @@ const Login = ({titleModal, classModalButton, ...rest  }) => {
                             <Col md="12">
                                 <h2 className="title-modal">{titleModal}</h2>
                                 <Form onSubmit={handleSubmit}>
-                                    <Forms type="email" placeholder="Email" name="email" value={email} onChange={e => handleChangeLogin(e)} />
-                                    <Forms type="password" placeholder="Password" name="password" onChange={e => handleChangeLogin(e)} />
+                                    <Inputs type="email" placeholder="Email" name="email" value={email} onChange={e => handleChangeLogin(e)} />
+                                    <Inputs type="password" placeholder="Password" name="password" onChange={e => handleChangeLogin(e)} />
                                     <Buttons className="buttons-red btn-block font-weight-bold mt-2 mb-2"  type="submit" title={titleModal} />
                                 </Form>
                                 <div className="text-link">

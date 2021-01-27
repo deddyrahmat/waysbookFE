@@ -2,9 +2,9 @@ import React, { Fragment } from 'react'
 import { Form } from 'react-bootstrap'
 
 // styling
-import './Forms.css';
+import './Inputs.css';
 
-const Forms = ({type, ...rest}) => {
+const Inputs = ({type, ...rest}) => {
     return (
         <Fragment>
             <Form.Group>
@@ -18,4 +18,4 @@ const Forms = ({type, ...rest}) => {
     )
 }
 
-export default Forms
+export default Inputs
