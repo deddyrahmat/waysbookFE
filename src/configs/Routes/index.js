@@ -6,12 +6,15 @@ import {
 
 
 // components
-import { Landing } from "../../pages";
+import { Landing, Home } from "../../pages";
 
 const Routes = () => {
     return (
         <Router>
             <Switch>
+                <Route path="/home">
+                    <Home />
+                </Route>
                 <Route path="/">
                     <Landing />
                 </Route>

@@ -1,9 +1,11 @@
 //Components
-import { Routes } from '../configs';
+import { AppContextProvider, Routes } from '../configs';
 
 function App() {
   return (
-    <Routes />
+    <AppContextProvider>
+      <Routes />
+    </AppContextProvider>
   );
 }
 

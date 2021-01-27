@@ -1,3 +1,4 @@
 import Routes from './Routes';
+import {AppContext, AppContextProvider} from './Context';
 
-export {Routes};
+export {AppContext,AppContextProvider,Routes};

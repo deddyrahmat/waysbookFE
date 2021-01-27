@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import { Row, Col, Container } from 'react-bootstrap';
 
 // components
-import { Buttons } from '../../components'
+import {  Register, Login } from '../../components'
 
 // images
 import { LogoWOW } from '../../assets'
@@ -22,8 +22,8 @@ const Landing = () => {
                             <p className="desc-landing">
                                 Sign-up now and subscribe to enjoy all the cool and latest books - The best book rental service provider in Indonesia
                             </p>
-                            <Buttons className="buttons-red px-5 font-weight-bold" title="Sign Up" />
-                            <Buttons className="buttons-grey px-5 font-weight-bold" title="Sign In" />
+                            <Register titleModal="Sign Up" classModalButton="buttons-red px-5 font-weight-bold"/>
+                            <Login titleModal="Sign In" classModalButton="buttons-grey px-5 font-weight-bold" />
                         </Col>
                     </Row>
                 </Container>

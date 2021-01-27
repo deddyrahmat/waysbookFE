@@ -1,0 +1,10 @@
+.form-field{
+    background: rgba(188, 188, 188, 0.25) !important;
+    border: 2px solid #BCBCBC !important;
+    box-sizing: border-box !important;
+    border-radius: 5px !important;
+}
+
+.form-field:focus{
+    box-shadow: 0 0 0 0.2rem rgba(173, 173, 173, 0.25) !important;
+}
