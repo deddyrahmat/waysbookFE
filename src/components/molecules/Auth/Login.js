@@ -7,7 +7,8 @@ import {Buttons, Inputs} from '../../';// same ../../index.js take file Buttons
 import {AppContext} from '../../../configs';
 
 // json Fake Data
-import FakeData from '../../../json/FakeData.json'
+// import FakeData from '../../../json/FakeData.json'
+import {Users} from '../../../FakeData/Users';
 
 // styling
 import "./Auth.css";
@@ -65,8 +66,6 @@ const Login = ({titleModal, classModalButton, ...rest  }) => {
     // ======================================================
     // process login
 
-    const {users} = FakeData;
-
     const [formData, setFormData] = useState({
         email: '',
         password : ''
@@ -84,7 +83,7 @@ const Login = ({titleModal, classModalButton, ...rest  }) => {
         e.preventDefault();
 
         // filter FakeData Users
-        let user = users.filter(data => data.email === email && data.password === password)
+        let user = Users.filter(data => data.email === email && data.password === password)
         // cek Auth User
         if (user.length > 0) {
             dispatch({
@@ -99,6 +98,8 @@ const Login = ({titleModal, classModalButton, ...rest  }) => {
     
     // process login
     // ======================================================
+
+    
     
     return (
         <Fragment>
