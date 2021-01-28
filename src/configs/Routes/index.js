@@ -7,14 +7,16 @@ import {
 
 // components
 import { Landing, Home } from "../../pages";
+import PrivateRoute from './PrivateRoute';
 
 const Routes = () => {
     return (
         <Router>
             <Switch>
-                <Route path="/home">
+                {/* <Route path="/home">
                     <Home />
-                </Route>
+                </Route> */}
+                <PrivateRoute exact path="/home" component={Home} />
                 <Route path="/">
                     <Landing />
                 </Route>

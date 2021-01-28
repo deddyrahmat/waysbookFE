@@ -7,7 +7,7 @@ import {Buttons, Inputs} from '../../';// same ../../index.js take file Buttons
 import {AppContext} from '../../../configs';
 
 // json Fake Data
-import FakeData from '../../../FakeData/FakeData.json'
+import {Users} from '../../../FakeData'
 
 // styling
 import "./Auth.css";
@@ -50,6 +50,7 @@ const Register = ({titleModal, classModalButton  }) => {
     // ======================================================
     // set modal for Register failed
     const [registerFailed, setRegisterFailed] = useState(false);
+    const [messageFailed, setMessageFailed] = useState("");
     
     const handleCloseRegisterFailed = () => setRegisterFailed(false);
     const handleRegisterFailed = () => setRegisterFailed(true);
@@ -59,19 +60,17 @@ const Register = ({titleModal, classModalButton  }) => {
     // ======================================================
     // process register
 
-    const {users} = FakeData;
-
-    const [formData, setFormData] = useState({
+    const [formDataRegister, setFormDataRegister] = useState({
         email: '',
         password : '',
         fullname : ''
     });
     
-    const {email, password, fullname} = formData;
+    const {email, password, fullname} = formDataRegister;
 
     const handleChangeRegister=(e)=> {
-        setFormData({
-            ...formData, [e.target.name]: e.target.value
+        setFormDataRegister({
+            ...formDataRegister, [e.target.name]: e.target.value
         });
     }
     
@@ -79,15 +78,39 @@ const Register = ({titleModal, classModalButton  }) => {
         e.preventDefault();
 
         // filter FakeData Users
-        let user = users.filter(data => data.email === email)
+
+        const filterUser = () => Users.filter(data => data.email === email);
+        let user = filterUser();
         // cek Auth User
         if (user.length > 0) {
+            console.log("filter user", user);
+            
+            setMessageFailed("Username has been used")
+            handleRegisterFailed();
+        }else if(user.length === 0){
+            Users.push({
+                id:Users.length+1,
+                fullname,
+                email,
+                password,
+                avatar: "https://images.unsplash.com/photo-1567446537708-ac4aa75c9c28?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80",
+                role : "user"
+            })
+
+            let cekUser = filterUser();
+
+            console.log("cek user setelah push",cekUser);
             dispatch({
                 type : "AUTH",
-                payload: user[0].id
+                payload: {
+                    id : Users.length,
+                    role : 'user'
+                }
             });
             history.push('/home');
-        }else{
+        }
+        else{
+            setMessageFailed("Register Failed")
             handleRegisterFailed();
         }
     }
@@ -95,6 +118,11 @@ const Register = ({titleModal, classModalButton  }) => {
     // process Register
     // ======================================================
     
+    console.log("user dari register",Users);
+    console.log("state dari register",state);
+    // console.log("email register",email);
+    // console.log("pass dari register",password);
+    // console.log("fullname dari register",fullname);
     
     return (
         <Fragment>
@@ -109,9 +137,9 @@ const Register = ({titleModal, classModalButton  }) => {
                             <Col md="12">
                                 <h2 className="title-modal">{titleModal}</h2>
                                 <Form onSubmit={handleSubmit}>
-                                    <Inputs type="email" placeholder="Email" value={email} onChange={e => handleChangeRegister(e)} />
-                                    <Inputs type="password" placeholder="Password" onChange={e => handleChangeRegister(e)} />
-                                    <Inputs type="text" placeholder="Full Name" value={fullname} onChange={e => handleChangeRegister(e)} />
+                                    <Inputs type="email" placeholder="Email" name="email" value={email} onChange={e => handleChangeRegister(e)} />
+                                    <Inputs type="password" placeholder="Password" name="password" onChange={e => handleChangeRegister(e)} />
+                                    <Inputs type="text" placeholder="Full Name" name="fullname" value={fullname} onChange={e => handleChangeRegister(e)} />
                                     <Buttons className="buttons-red btn-block font-weight-bold mt-2 mb-2"  type="submit" title={titleModal} />
                                 </Form>
                                 <div className="text-link">
@@ -127,7 +155,7 @@ const Register = ({titleModal, classModalButton  }) => {
             {/* component modal Register failed */}
             <Modal size="lg" show={registerFailed} onHide={handleCloseRegisterFailed} className="d-flex justify-content-center align-items-center">
                 <Modal.Body >
-                    <p className="modal-failed">Register Failed</p>
+                    <p className="modal-failed">{messageFailed}</p>
                 </Modal.Body>
             </Modal>
         </Fragment>

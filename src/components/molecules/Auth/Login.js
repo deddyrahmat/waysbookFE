@@ -8,7 +8,7 @@ import {AppContext} from '../../../configs';
 
 // json Fake Data
 // import FakeData from '../../../json/FakeData.json'
-import {Users} from '../../../FakeData/Users';
+import {Users} from '../../../FakeData';
 
 // styling
 import "./Auth.css";
@@ -88,7 +88,10 @@ const Login = ({titleModal, classModalButton, ...rest  }) => {
         if (user.length > 0) {
             dispatch({
                 type : "AUTH",
-                payload: user[0].id
+                payload: {
+                    id:user[0].id,
+                    role : user[0].role
+                }
             });
             history.push('/home');
         }else{

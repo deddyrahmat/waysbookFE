@@ -5,7 +5,7 @@ export const AppContext = createContext();
 const initialState = {
     modalLogin : false,
     modalRegister : false,
-    auth : false
+    auth : false,
 }
 
 const reducer = (state, action)=> {
@@ -23,10 +23,11 @@ const reducer = (state, action)=> {
                 modalRegister : payload
             }
         case "AUTH":
-            localStorage.setItem('id_user', payload )
+            localStorage.setItem('id_user', payload.id )
             return {
                 ...state,
-                auth : true
+                auth : true,
+                role : payload.role
             }
         default:
             throw new Error();
