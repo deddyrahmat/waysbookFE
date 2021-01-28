@@ -6,6 +6,7 @@ const initialState = {
     modalLogin : false,
     modalRegister : false,
     auth : false,
+    payment : false
 }
 
 const reducer = (state, action)=> {

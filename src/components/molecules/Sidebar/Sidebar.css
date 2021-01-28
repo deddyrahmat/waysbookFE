@@ -1,0 +1,35 @@
+.sidebar-avatar{
+    width: 100px;
+    height: 100px;
+    border: 2px solid black;
+}
+
+.sidebar-fullname{
+    font-weight: 900;
+    font-size: 24px;
+}
+
+.sidebar-status-subscribed{
+    font-weight: 800;
+    font-size: 18px;
+    color: #29BD11;
+}
+
+.sidebar-status-not{
+    font-weight: 800;
+    font-size: 18px;
+    color: #D60000;
+}
+
+.sidebar-menu{
+    font-size: 25px !important;
+    color: #929292 !important;
+}
+
+.sidebar-icon{
+    margin-right: 20px;
+}
+
+.sidebar-hr{
+    border: 1px solid #C9C9C9;
+}
