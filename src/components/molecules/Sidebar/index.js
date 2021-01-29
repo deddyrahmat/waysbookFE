@@ -31,17 +31,17 @@ const Sidebar = () => {
                         <img src={LogoSidebar} alt="logo" />
                     </Col>
                 </Row>
-                <Row className="d-flex justify-content-center mb-3">
+                <Row className="d-flex justify-content-center mb-4">
                     <Col className="text-center ">
                         <img src={user.avatar} alt="avatar" className="sidebar-avatar rounded-circle shadow" />
                     </Col>
                 </Row>
-                <Row className="d-flex justify-content-center mb-3">
+                <Row className="d-flex justify-content-center mb-4">
                     <Col className="text-center ">
                         <h3 className="sidebar-fullname">{user.fullname}</h3>
                     </Col>
                 </Row>
-                <Row className="d-flex justify-content-center mb-3">
+                <Row className="d-flex justify-content-center">
                     <Col className="text-center ">
                         {
                             state.payment ? (
@@ -55,13 +55,13 @@ const Sidebar = () => {
                 
                 <hr className="sidebar-hr"></hr>
 
-                <Row className="d-flex justify-content-center my-3">
+                <Row className="d-flex justify-content-center sidebar-menu-length">
                     <Col>
                         <p className="sidebar-menu"> <FontAwesomeIcon icon={faUser} className="sidebar-icon" />  Profile</p>
                     </Col>
                 </Row>
 
-                <Row className="d-flex justify-content-center my-3">
+                <Row className="d-flex justify-content-center mb-5">
                     <Col>
                         <p className="sidebar-menu"> <FontAwesomeIcon icon={faFileInvoiceDollar} className="sidebar-icon" />  Subscribe</p>
                     </Col>
@@ -69,7 +69,7 @@ const Sidebar = () => {
 
                 <hr className="sidebar-hr"></hr>
 
-                <Row className="d-flex justify-content-center my-3">
+                <Row className="d-flex justify-content-center sidebar-menu-length">
                     <Col>
                         <p className="sidebar-menu"> <FontAwesomeIcon icon={faSignOutAlt} className="sidebar-icon" />  Logout</p>
                     </Col>

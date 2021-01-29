@@ -6,16 +6,19 @@ import {
 
 
 // components
-import { Landing, Home } from "../../pages";
+import { Landing, Home, Dashboard } from "../../pages";
 import PrivateRoute from './PrivateRoute';
+import PrivateRouteAdmin from './PrivateRouteAdmin';
 
 const Routes = () => {
     return (
         <Router>
             <Switch>
-                {/* <Route path="/home">
-                    <Home />
+                {/* <Route path="/dashboard">
+                    <Dashboard />
                 </Route> */}
+                <PrivateRouteAdmin exact path="/admin/dashboard" component={Dashboard} />
+
                 <PrivateRoute exact path="/home" component={Home} />
                 <Route path="/">
                     <Landing />

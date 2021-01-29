@@ -2,12 +2,14 @@
     width: 100px;
     height: 100px;
     border: 2px solid black;
+    object-fit: cover;
 }
 
 .sidebar-fullname{
     font-weight: 900;
     font-size: 24px;
 }
+
 
 .sidebar-status-subscribed{
     font-weight: 800;
@@ -26,8 +28,13 @@
     color: #929292 !important;
 }
 
+.sidebar-menu-length{
+    margin-top: 70px;
+    margin-bottom: 85px;
+}
+
 .sidebar-icon{
-    margin-right: 20px;
+    margin-right: 5px;
 }
 
 .sidebar-hr{

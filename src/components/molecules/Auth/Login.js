@@ -93,7 +93,13 @@ const Login = ({titleModal, classModalButton, ...rest  }) => {
                     role : user[0].role
                 }
             });
-            history.push('/home');
+
+            // cek role for redirect page where role user
+            if (user[0].role == "admin") {
+                history.push('/admin/dashboard');                
+            }else{
+                history.push('/home');
+            }
         }else{
             handleLoginFailed();
         }

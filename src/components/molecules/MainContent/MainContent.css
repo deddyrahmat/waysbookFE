@@ -1,3 +1,11 @@
+.title-list{
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 700;
+    font-size: 36px;
+    margin-top: 51px;
+    margin-bottom: 45px;
+}
 .list-books{
     border-radius: 10px !important;
+    height: 270px;
 }
