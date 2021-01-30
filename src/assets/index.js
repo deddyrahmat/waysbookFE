@@ -14,5 +14,12 @@ import  BukuSiswa from "./books/2.png";
 // icons
 import Wow from './icons/Wow.png';
 import Attachment from './icons/attachment.png';
+import Envelope from './icons/envelope.png';
+import Gender from './icons/gender.png';
+import Maps from './icons/maps.png';
+import Phone from './icons/phone.png';
 
-export {BackgroundLanding, LogoWOW, LogoSidebar, HeroImage, TitleHero, AlamKubur, Serangkai, TessoftheRoad, BukuSiswa, Wow, Attachment};
+export {
+    BackgroundLanding, LogoWOW, LogoSidebar, HeroImage, TitleHero, 
+    AlamKubur, Serangkai, TessoftheRoad, BukuSiswa, 
+    Wow, Attachment, Envelope, Gender, Maps, Phone};

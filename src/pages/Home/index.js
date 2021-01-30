@@ -2,13 +2,12 @@ import React, {Fragment, useContext} from 'react';
 import { Row,Col } from 'react-bootstrap';
 import {
     BrowserRouter as Router,
-    Switch,
-    Route
+    Switch
 } from "react-router-dom";
 
 // Component
 import {PrivateRoute} from '../../configs';
-import { MainContent, Sidebar, Subscribe } from '../../components';
+import { MainContent, Profile, Sidebar, Subscribe } from '../../components';
 import {AppContext} from '../../configs';
 
 const Home = () => {
@@ -24,8 +23,9 @@ const Home = () => {
                     </Col>
                     <Col md="9">
                         <Switch>
-                            <PrivateRoute exact path="/subscribe" component={Subscribe} />
                             <PrivateRoute exact path="/home" component={MainContent} />
+                            <PrivateRoute exact path="/subscribe" component={Subscribe} />
+                            <PrivateRoute exact path="/profile" component={Profile} />
                         </Switch>
                     </Col>
                 </Row>

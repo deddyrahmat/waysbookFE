@@ -25,13 +25,17 @@ const Sidebar = () => {
 
     const [state] = useContext(AppContext);
     
+    // cari data user yang sesuai dengan user yang login dengan membandingkannya di localstorage id 
     const user = Users.find(user => user.id == localStorage.getItem('id_user'));
+
     return (
         <Fragment>
             <Container>
                 <Row className="d-flex justify-content-center mt-n2 mb-3">
                     <Col className="text-center">
-                        <img src={LogoSidebar} alt="logo" />
+                        <Link to="/home" className="sidebar-link">
+                            <img src={LogoSidebar} alt="logo" />
+                        </Link>
                     </Col>
                 </Row>
                 <Row className="d-flex justify-content-center mb-4">

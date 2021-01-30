@@ -1,0 +1,26 @@
+.bg-profile{
+    background: #FFD9D9;
+    border-radius: 8px;
+    width: 100%;
+}
+
+.content-profile{
+    padding-left: 34px;
+    padding-right: 34px;
+    padding-top: 37px;
+    padding-bottom: 17px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.height-list-profile{
+    margin-bottom: 22px;
+}
+
+.image-profile{
+    background: #C4C4C4;
+    border-radius: 4px;
+    width: 100%;
+    object-fit: cover;
+}

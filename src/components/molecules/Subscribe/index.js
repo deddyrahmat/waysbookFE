@@ -1,5 +1,6 @@
 import React, { Fragment, useState, useContext } from 'react';
 import { Row, Col, Container, Form, Modal } from 'react-bootstrap';
+import { useHistory} from 'react-router-dom';
 
 // component
 import {AppContext} from '../../../configs';
@@ -13,6 +14,8 @@ import { Uploads } from '../../atoms';
 import "./Subscribe.css";
 
 const Subscribe = () => {
+
+    const history = useHistory();
 
     const [state, dispatch] = useContext(AppContext);
 
@@ -51,6 +54,7 @@ const Subscribe = () => {
 
         handleShowModal();
 
+        history.push('/home');
 
         console.log("e", e);
     }

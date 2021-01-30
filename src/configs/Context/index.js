@@ -6,7 +6,8 @@ const initialState = {
     modalLogin : false,
     modalRegister : false,
     auth : false,
-    payment : false
+    payment : false,
+    listBook : [2]
 }
 
 const reducer = (state, action)=> {
