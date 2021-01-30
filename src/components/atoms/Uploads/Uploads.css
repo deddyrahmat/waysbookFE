@@ -1,0 +1,27 @@
+.file-attachment{
+
+    display: flex;
+    justify-content:space-between;
+
+    border: 2px solid #BCBCBC !important;
+    box-sizing: border-box !important;
+    border-radius: 5px !important;
+    width: 100%;
+    padding-top: 13px;
+    padding-left: 13px;
+    padding-right: 13px;
+    cursor: pointer;
+    align-items: center;
+}
+
+.title-file-attachment{
+    color: #D60000;
+    font-weight: 900;
+    font-size: 18px;
+}
+
+.image-file-attachment{
+    width: 19px !important;
+    height: 30px !important;
+    margin-top: -12px;
+}

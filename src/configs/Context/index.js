@@ -30,6 +30,11 @@ const reducer = (state, action)=> {
                 auth : true,
                 role : payload.role
             }
+        case "PAYMENT":
+            return {
+                ...state,
+                payment : true,
+            }
         default:
             throw new Error();
     }

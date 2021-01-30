@@ -28,6 +28,10 @@
     color: #929292 !important;
 }
 
+.sidebar-menu:hover {
+    color: #666666 !important;
+}
+
 .sidebar-menu-length{
     margin-top: 70px;
     margin-bottom: 85px;
@@ -35,6 +39,10 @@
 
 .sidebar-icon{
     margin-right: 5px;
+}
+
+.sidebar-link{
+    text-decoration: none !important;
 }
 
 .sidebar-hr{

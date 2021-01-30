@@ -1,5 +1,8 @@
-import React, { Fragment, useContext } from 'react'
-import { Container,Row,Col } from 'react-bootstrap'
+import React, { Fragment, useContext } from 'react';
+import { Container,Row,Col } from 'react-bootstrap';
+import {
+  Link
+} from "react-router-dom";
 
 // component
 import {Users} from '../../../FakeData';
@@ -57,13 +60,17 @@ const Sidebar = () => {
 
                 <Row className="d-flex justify-content-center sidebar-menu-length">
                     <Col>
-                        <p className="sidebar-menu"> <FontAwesomeIcon icon={faUser} className="sidebar-icon" />  Profile</p>
+                        <Link to="/profile" className="sidebar-link">
+                            <p className="sidebar-menu"> <FontAwesomeIcon icon={faUser} className="sidebar-icon" />  Profile</p>                            
+                        </Link>
                     </Col>
                 </Row>
 
                 <Row className="d-flex justify-content-center mb-5">
                     <Col>
-                        <p className="sidebar-menu"> <FontAwesomeIcon icon={faFileInvoiceDollar} className="sidebar-icon" />  Subscribe</p>
+                        <Link to="/subscribe" className="sidebar-link">
+                            <p className="sidebar-menu"> <FontAwesomeIcon icon={faFileInvoiceDollar} className="sidebar-icon" />  Subscribe</p>
+                        </Link>
                     </Col>
                 </Row>
 
@@ -71,7 +78,9 @@ const Sidebar = () => {
 
                 <Row className="d-flex justify-content-center sidebar-menu-length">
                     <Col>
-                        <p className="sidebar-menu"> <FontAwesomeIcon icon={faSignOutAlt} className="sidebar-icon" />  Logout</p>
+                        <Link to="/subscribe" className="sidebar-link">
+                            <p className="sidebar-menu"> <FontAwesomeIcon icon={faSignOutAlt} className="sidebar-icon" />  Logout</p>
+                        </Link>
                     </Col>
                 </Row>
 

@@ -1,0 +1,28 @@
+.title-subscribe{
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 700;
+    font-size: 36px;
+}
+
+.desc-subscribe{
+    margin-top: 41px;
+    margin-bottom: 20px;
+}
+
+.account-subscribe{
+    margin-bottom: 24px;
+}
+
+
+.height-button-subscribe{
+    margin-top: 55px;
+}
+
+.modal-subscribe{
+    font-size: 24px;
+    line-height: 33px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #29BD11;
+}

@@ -11,4 +11,8 @@ import  Serangkai from "./books/1.png";
 import  TessoftheRoad from "./books/4.png";
 import  BukuSiswa from "./books/2.png";
 
-export {BackgroundLanding, LogoWOW, LogoSidebar, HeroImage, TitleHero, AlamKubur, Serangkai, TessoftheRoad, BukuSiswa};
+// icons
+import Wow from './icons/Wow.png';
+import Attachment from './icons/attachment.png';
+
+export {BackgroundLanding, LogoWOW, LogoSidebar, HeroImage, TitleHero, AlamKubur, Serangkai, TessoftheRoad, BukuSiswa, Wow, Attachment};
