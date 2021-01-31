@@ -1,4 +1,5 @@
 .navbars-avatar{
     height: 50px;
     width: 50px;
+    object-fit: cover;
 }
