@@ -4,12 +4,16 @@ import { Button } from 'react-bootstrap'
 // Styling
 import "./Buttons.css";
 
-const Buttons = ({title, className, ...rest}) => {
+const Buttons = ({title, className, icon, ...rest}) => {
 
-    // console.log("res login", rest);
     return (
         <Fragment>
-            <Button variant="danger" className={className} {...rest}>{title}</Button>{' '}
+            <Button variant="danger" className={className} {...rest}>
+                {title} 
+                {
+                    typeof icon === 'undefined' ? null : (<img src={icon} alt="icon" className="ml-3" />)
+                } 
+            </Button>{' '}
         </Fragment>
     )
 }

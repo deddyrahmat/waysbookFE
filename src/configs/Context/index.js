@@ -7,7 +7,7 @@ const initialState = {
     modalRegister : false,
     auth : false,
     payment : false,
-    listBook : [2]
+    listBook : []
 }
 
 const reducer = (state, action)=> {
@@ -35,6 +35,11 @@ const reducer = (state, action)=> {
             return {
                 ...state,
                 payment : true,
+            }
+        case "ADD_LIST" :
+            return {
+                ...state,
+                listBook : [payload]
             }
         default:
             throw new Error();

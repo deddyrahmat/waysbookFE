@@ -22,7 +22,8 @@ const Landing = () => {
                             <p className="desc-landing">
                                 Sign-up now and subscribe to enjoy all the cool and latest books - The best book rental service provider in Indonesia
                             </p>
-                            <Register titleModal="Sign Up" classModalButton="buttons-red px-5 font-weight-bold"/>
+
+                            <Register titleModal="Sign Up" classModalButton="buttons-red px-5 font-weight-bold mr-3"/>
                             <Login titleModal="Sign In" classModalButton="buttons-grey px-5 font-weight-bold" />
                         </Col>
                     </Row>

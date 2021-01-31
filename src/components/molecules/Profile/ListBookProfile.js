@@ -1,5 +1,6 @@
 import React, { Fragment, useContext, useState, useEffect } from 'react'
 import { Container, Row, Col, Modal } from 'react-bootstrap';
+import {useHistory} from "react-router-dom";
 
 // component
 import {AppContext} from '../../../configs';
@@ -11,6 +12,8 @@ import "./Profile.css";
 import {Books} from '../../../FakeData';
 
 const ListBookProfile = () => {
+
+    const history = useHistory();
 
     const [state] = useContext(AppContext);
 
@@ -26,10 +29,12 @@ const ListBookProfile = () => {
     // set modal for DetailBook failed
     // ======================================================
 
-    const handleStatusPay = () => {
+    const handleListBook = (id) => {
         if (!state.payment) {
             handleDetailBookFailed();
             setMessageFailed("please make a payment to read the latest books");
+        }else{
+            history.push(`/detail/${id}`)
         }
     }
 
@@ -56,7 +61,7 @@ const ListBookProfile = () => {
                 <Row>
                     {
                         myListBook.map(book => (
-                            <Col sm="12" md="3" key={book.id} style={{cursor: 'pointer'}} onClick={handleStatusPay}>
+                            <Col sm="12" md="3" key={book.id} style={{cursor: 'pointer'}} onClick={() => handleListBook(book.id)}>
                                 <img src={book.image} alt="list-books" className="img-fluid list-books" />
                                 <p className="font-weight-bold mb-1 mt-3 text-truncate">{book.title}</p>
                                 <p className="text-muted">{book.author}</p>

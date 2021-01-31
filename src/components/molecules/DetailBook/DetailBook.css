@@ -1,0 +1,48 @@
+.image-detail-book{
+    border-radius: 10px;
+    max-width: 100%;
+    height: auto;
+}
+.container-detail-book{
+    margin-bottom: 65px !important;
+}
+
+.size-detail-book{
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.sub-detail-book{
+    font-size: 18px;
+    color: #929292;
+    font-weight: normal;
+}
+
+.title-detail-book{
+    font-family: 'Times New Roman', Times, serif;
+    color: black;
+    font-weight: bold;
+    font-size: 64px;
+}
+
+.author-detail-book{
+    color: #929292;
+    font-size: 24px;
+}
+
+/* AboutDetailBook */
+.title-AboutDetailBook {
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+    font-size: 36px;
+    
+    margin-top: 94px;
+}
+
+.desc-AboutDetailBook {
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 150%;
+    text-align: justify;
+    color: #929292;
+}

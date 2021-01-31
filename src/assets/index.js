@@ -18,8 +18,11 @@ import Envelope from './icons/envelope.png';
 import Gender from './icons/gender.png';
 import Maps from './icons/maps.png';
 import Phone from './icons/phone.png';
+import RightClick from './icons/right-click.png';
+import AddList from './icons/addList.png';
+
 
 export {
     BackgroundLanding, LogoWOW, LogoSidebar, HeroImage, TitleHero, 
     AlamKubur, Serangkai, TessoftheRoad, BukuSiswa, 
-    Wow, Attachment, Envelope, Gender, Maps, Phone};
+    Wow, Attachment, Envelope, Gender, Maps, Phone, RightClick, AddList};
