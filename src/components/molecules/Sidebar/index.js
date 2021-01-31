@@ -82,7 +82,7 @@ const Sidebar = () => {
 
                 <Row className="d-flex justify-content-center sidebar-menu-length">
                     <Col>
-                        <Link to="/subscribe" className="sidebar-link">
+                        <Link to="/" className="sidebar-link">
                             <p className="sidebar-menu"> <FontAwesomeIcon icon={faSignOutAlt} className="sidebar-icon" />  Logout</p>
                         </Link>
                     </Col>

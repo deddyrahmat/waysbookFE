@@ -1,14 +1,15 @@
 import React, { Fragment } from 'react'
-import { Table, NavDropdown } from 'react-bootstrap'
+import { Table, NavDropdown, Container } from 'react-bootstrap'
 
 import "./Transactions.css";
 
 const Transactions = () => {
     return (
         <Fragment>
-            <h3 className="title-dashboard">Incoming Transaction</h3>
-            
-            <Table striped hover variant="light" id="table-transaction">
+            <Container>
+                <h3 className="title-dashboard">Incoming Transaction</h3>
+                
+                <Table striped hover variant="light" id="table-transaction">
                     <thead className="text-danger">
                         <tr>
                         <th className="head-transactions">No</th>
@@ -64,7 +65,8 @@ const Transactions = () => {
                             </td>
                         </tr>
                     </tbody>
-                    </Table>
+                </Table>
+            </Container>
         </Fragment>
     )
 }

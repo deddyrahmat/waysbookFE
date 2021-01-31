@@ -15,6 +15,7 @@
 }
 
 .title-file-attachment{
+    display: inline;
     color: #D60000;
     font-weight: 900;
     font-size: 18px;
@@ -24,4 +25,12 @@
     width: 19px !important;
     height: 30px !important;
     margin-top: -12px;
+}
+
+/* book */
+.add-book label p{
+    display: inline;
+    color: #333333;
+    font-weight: 800;
+    font-size: 18px;
 }

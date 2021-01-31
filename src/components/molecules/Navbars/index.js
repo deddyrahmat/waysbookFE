@@ -48,7 +48,7 @@ const Navbars = () => {
 
                                 <NavDropdown.Divider />
                                 
-                                <NavDropdown.Item href="#action/3.4"><FontAwesomeIcon icon={faSignOutAlt} className="sidebar-icon text-danger" /> Logout</NavDropdown.Item>
+                                <NavDropdown.Item as={Link} to="/"><FontAwesomeIcon icon={faSignOutAlt} className="sidebar-icon text-danger" /> Logout</NavDropdown.Item>
                             </NavDropdown>
                     </Navbar.Collapse>
                 </Container>

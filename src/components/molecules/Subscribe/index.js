@@ -1,6 +1,6 @@
 import React, { Fragment, useState, useContext } from 'react';
 import { Row, Col, Container, Form, Modal } from 'react-bootstrap';
-import { useHistory} from 'react-router-dom';
+import { useHistory,Redirect} from 'react-router-dom';
 
 // component
 import {AppContext} from '../../../configs';
@@ -54,7 +54,7 @@ const Subscribe = () => {
 
         handleShowModal();
 
-        history.push('/home');
+        // history.push('/home');
 
         console.log("e", e);
     }
@@ -80,7 +80,7 @@ const Subscribe = () => {
 
                         <Form onSubmit={handlePayment}>
                             <Inputs type="text" placeholder="Input Your Account Number" name="account"/>
-                            <Uploads onChange={handleImageTransaction} />
+                            <Uploads onChange={handleImageTransaction} className="title-file-attachment" title="Attache proof of transfer" Subscribe="aktif"/>
 
                             {
                                 image.preview && (
@@ -99,6 +99,11 @@ const Subscribe = () => {
                 <Modal.Body >
                     <p className="modal-subscribe">{descModal}</p>
                 </Modal.Body>
+                {
+                showModal == false ? (
+                    <Redirect to="/home" />
+                ) : null
+                }
             </Modal>
         </Fragment>
     )

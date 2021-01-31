@@ -14,15 +14,17 @@ import  BukuSiswa from "./books/2.png";
 // icons
 import Wow from './icons/Wow.png';
 import Attachment from './icons/attachment.png';
+import AttachmentBook from './icons/attachment-book.png';
 import Envelope from './icons/envelope.png';
 import Gender from './icons/gender.png';
 import Maps from './icons/maps.png';
 import Phone from './icons/phone.png';
 import RightClick from './icons/right-click.png';
 import AddList from './icons/addList.png';
+import AddBooks from './icons/add-book.png';
 
 
 export {
     BackgroundLanding, LogoWOW, LogoSidebar, HeroImage, TitleHero, 
     AlamKubur, Serangkai, TessoftheRoad, BukuSiswa, 
-    Wow, Attachment, Envelope, Gender, Maps, Phone, RightClick, AddList};
+    Wow, Attachment, AttachmentBook, Envelope, Gender, Maps, Phone, RightClick, AddList, AddBooks};

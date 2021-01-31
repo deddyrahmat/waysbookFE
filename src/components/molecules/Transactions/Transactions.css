@@ -1,7 +1,6 @@
-* {
+/* * {
     font-family: -apple-system, Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;
-    
-}
+} */
 
 .head-transactions{
     font-family: -apple-system, Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;
@@ -10,16 +9,16 @@
 }
 
 .status-payment-approve{
-    color: #0ACF83;
-    font-weight: 500;
+    color: #0ACF83 !important;
+    font-weight: 500 !important;
 }
 
 .status-payment-cancel{
-    color: #FF0742;
-    font-weight: 500;
+    color: #FF0742 !important;
+    font-weight: 500 !important;
 }
 
 .status-payment-pending{
-    color: #F7941E;
-    font-weight: 500;
+    color: #F7941E !important;
+    font-weight: 500 !important;
 }

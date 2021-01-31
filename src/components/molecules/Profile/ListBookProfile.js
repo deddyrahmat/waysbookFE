@@ -60,13 +60,19 @@ const ListBookProfile = () => {
                 <h3 className="title-list">My List Books</h3>
                 <Row>
                     {
-                        myListBook.map(book => (
-                            <Col sm="12" md="3" key={book.id} style={{cursor: 'pointer'}} onClick={() => handleListBook(book.id)}>
-                                <img src={book.image} alt="list-books" className="img-fluid list-books" />
-                                <p className="font-weight-bold mb-1 mt-3 text-truncate">{book.title}</p>
-                                <p className="text-muted">{book.author}</p>
+                        myListBook.length == 0 ? (
+                            <Col className="d-flex justify-content-center">
+                                <h3 className="text-danger text-center">List Book Not Found</h3>
                             </Col>
-                        )).reverse()
+                        ):(
+                            myListBook.map(book => (
+                                <Col sm="12" md="3" key={book.id} style={{cursor: 'pointer'}} onClick={() => handleListBook(book.id)}>
+                                    <img src={book.image} alt="list-books" className="img-fluid list-books" />
+                                    <p className="font-weight-bold mb-1 mt-3 text-truncate">{book.title}</p>
+                                    <p className="text-muted">{book.author}</p>
+                                </Col>
+                            )).reverse()
+                        )
                     }
                 </Row>
             </Container>
