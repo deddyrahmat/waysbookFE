@@ -19,6 +19,7 @@ import {RightClick, AddList} from '../../../assets'
 const AboutDetailBook = () => {
 
     const {id} = useParams();
+    console.log("log id dari about detail book ", id);
 
     const [state, dispatch] = useContext(AppContext);
 
@@ -60,7 +61,8 @@ const AboutDetailBook = () => {
 
                         )
                     }
-                    <Link to="/read-book">
+
+                    <Link to={`/user/book/read/${book.id}`}>
                         <Buttons className="buttons-grey font-weight-bold mt-2 mb-2"  type="submit" title="Read Book" icon={RightClick} />
                     </Link>
 

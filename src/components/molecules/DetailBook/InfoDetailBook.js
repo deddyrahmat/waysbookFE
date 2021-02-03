@@ -12,6 +12,7 @@ import './DetailBook.css';
 
 const InfoDetailBook = () => {
     const {id} = useParams();
+    console.log("log id dari info detail book ", id);
     const book = Books.find(book => book.id == id);
     
     return (

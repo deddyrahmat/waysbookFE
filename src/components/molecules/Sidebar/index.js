@@ -1,7 +1,8 @@
 import React, { Fragment, useContext } from 'react';
 import { Container,Row,Col } from 'react-bootstrap';
 import {
-  Link
+    useRouteMatch,
+    Link
 } from "react-router-dom";
 
 // component
@@ -23,6 +24,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Sidebar = () => {
 
+    let { path, url } = useRouteMatch();
+
     const [state] = useContext(AppContext);
     
     // cari data user yang sesuai dengan user yang login dengan membandingkannya di localstorage id 
@@ -33,7 +36,7 @@ const Sidebar = () => {
             <Container>
                 <Row className="d-flex justify-content-center mt-n2 mb-3">
                     <Col className="text-center">
-                        <Link to="/home" className="sidebar-link">
+                        <Link to="/user" className="sidebar-link">
                             <img src={LogoSidebar} alt="logo" />
                         </Link>
                     </Col>
@@ -64,7 +67,8 @@ const Sidebar = () => {
 
                 <Row className="d-flex justify-content-center sidebar-menu-length">
                     <Col>
-                        <Link to="/profile" className="sidebar-link">
+                    {/* <Link to={`${url}/profile`}>Profile</Link> */}
+                        <Link to={`${url}/profile`} className="sidebar-link">
                             <p className="sidebar-menu"> <FontAwesomeIcon icon={faUser} className="sidebar-icon" />  Profile</p>                            
                         </Link>
                     </Col>
@@ -72,7 +76,7 @@ const Sidebar = () => {
 
                 <Row className="d-flex justify-content-center mb-5">
                     <Col>
-                        <Link to="/subscribe" className="sidebar-link">
+                        <Link to={`${url}/subscribe`} className="sidebar-link">
                             <p className="sidebar-menu"> <FontAwesomeIcon icon={faFileInvoiceDollar} className="sidebar-icon" />  Subscribe</p>
                         </Link>
                     </Col>

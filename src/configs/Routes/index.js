@@ -13,18 +13,24 @@ import PrivateRouteAdmin from './PrivateRouteAdmin';
 const Routes = () => {
     return (
         <Router>
-            <Switch>
+            {/* <Switch> */}
                 {/* <Route path="/dashboard">
                     <Dashboard />
                 </Route> */}
-                <PrivateRouteAdmin exact path="/admin/dashboard" component={Dashboard} />
 
-                <PrivateRoute exact path="/home" component={Home} />
-                
                 <Route exact path="/">
                     <Landing />
                 </Route>
-            </Switch>
+
+                {/* <Route path="/user">
+                    <Home />
+                </Route> */}
+                
+                <PrivateRouteAdmin exact path="/admin/dashboard" component={Dashboard} />
+
+                <PrivateRoute path="/user" component={Home} />
+                
+            {/* </Switch> */}
         </Router>
     )
 }

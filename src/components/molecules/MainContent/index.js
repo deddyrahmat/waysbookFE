@@ -1,6 +1,6 @@
 import React, { Fragment, useContext, useState } from 'react';
 import { Col, Container, Row, Modal } from 'react-bootstrap';
-import {useHistory} from "react-router-dom";
+import {useHistory, useRouteMatch,} from "react-router-dom";
 
 // component
 import {AppContext} from '../../../configs'
@@ -13,10 +13,12 @@ import {Books} from '../../../FakeData';
 // stying
 import './MainContent.css';
 
-const MainContent = () => {
+const MainContent = (props) => {
 
     const history = useHistory();
-
+    
+    let { path, url } = useRouteMatch();
+    
     const [state] = useContext(AppContext);
 
     // ======================================================
@@ -28,21 +30,28 @@ const MainContent = () => {
     const handleDetailBookFailed = () => setDetailBookFailed(true);
     // set modal for DetailBook failed
     // ======================================================
+    
 
     const handleListBook = (id) => {
         if (!state.payment) {
             handleDetailBookFailed();
             setMessageFailed("please make a payment to read the latest books");
         }else{
-            history.push(`/detail/${id}`)
+            history.push(`${url}/book/detail/${id}`)
         }
     }
 
 
+    console.log("match from home", props.matchRouter);
+    console.log("url from maincontent", url);
+
     return (
         <Fragment>
             <Container >
+
                 <HeroImage />
+
+                
                 <h3 className="title-list">List Books</h3>
                 <Row>
                     {

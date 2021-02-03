@@ -9,6 +9,8 @@ import MainContent from './MainContent';
 import Subscribe from './Subscribe';
 import Profile from './Profile';
 import DetailBook from './DetailBook';
+import ReadBook from './ReadBook';
+
 
 // admin
 import Navbars from './Navbars';
@@ -17,6 +19,6 @@ import AddBook from './Book/AddBook';
 
 export {
     Register, Login,
-    Sidebar, HeroImage, MainContent, Subscribe,Profile,DetailBook,
+    Sidebar, HeroImage, MainContent, Subscribe,Profile,DetailBook,ReadBook,
     Navbars, Transactions, AddBook
 }

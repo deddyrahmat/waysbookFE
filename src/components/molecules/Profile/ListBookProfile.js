@@ -1,6 +1,6 @@
 import React, { Fragment, useContext, useState, useEffect } from 'react'
 import { Container, Row, Col, Modal } from 'react-bootstrap';
-import {useHistory} from "react-router-dom";
+import {useHistory, useRouteMatch, useLocation} from "react-router-dom";
 
 // component
 import {AppContext} from '../../../configs';
@@ -13,11 +13,18 @@ import {Books} from '../../../FakeData';
 
 const ListBookProfile = () => {
 
+    let { path, url } = useRouteMatch();
+
     const history = useHistory();
 
     const [state] = useContext(AppContext);
 
     const [myListBook, setMyListBook] = useState([]);
+
+    console.log("list book check url ", url);
+    console.log("list book ", state.listBook);
+    let location = useLocation();
+    console.log("location list book", location);
 
     // ======================================================
     // set modal for login failed
@@ -34,11 +41,10 @@ const ListBookProfile = () => {
             handleDetailBookFailed();
             setMessageFailed("please make a payment to read the latest books");
         }else{
-            history.push(`/detail/${id}`)
+            history.push(`/user/book/detail/${id}`)
+            // history.push(`${url}/detail/${id}`)
         }
     }
-
-    console.log("list book ", state.listBook);
 
     useEffect(() => {
         for (let list = 0; list < state.listBook.length; list++) {

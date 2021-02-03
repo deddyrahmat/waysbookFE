@@ -98,7 +98,7 @@ const Login = ({titleModal, classModalButton, ...rest  }) => {
             if (user[0].role == "admin") {
                 history.push('/admin/dashboard');                
             }else{
-                history.push('/home');
+                history.push('/user');
             }
         }else{
             handleLoginFailed();

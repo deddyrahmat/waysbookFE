@@ -101,7 +101,7 @@ const Subscribe = () => {
                 </Modal.Body>
                 {
                 showModal == false ? (
-                    <Redirect to="/home" />
+                    <Redirect to="/user" />
                 ) : null
                 }
             </Modal>
