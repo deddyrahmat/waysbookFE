@@ -3,9 +3,7 @@ import { Row,Col, Container } from 'react-bootstrap';
 import {
     // BrowserRouter as Router,
     Switch,
-    Route,
     useRouteMatch,
-    Link,
     useLocation,
     useHistory,
     useParams
@@ -30,11 +28,11 @@ const Home = () => {
 
     let { path, url } = useRouteMatch();
 
-    console.log("state di home di home", state);
-    console.log("path di home", path);
-    console.log("url di home", url);
-    console.log("parameter di home", paramId);
-    console.log("location di home", location);
+    // console.log("state di home di home", state);
+    // console.log("path di home", path);
+    // console.log("url di home", url);
+    // console.log("parameter di home", paramId);
+    // console.log("location di home", location);
 
     // menyimpan url terakhir yang menyimpan id book ke variabel locPathReadBook untuk membaca buku
     const locPathReadBook = location.pathname.split("/").slice(-1)[0];
@@ -48,8 +46,8 @@ const Home = () => {
     return (
         <Fragment>
             {/* <Router> */}
-            { ConsoleLog(location.pathname) }
-            { ConsoleLog(locPathReadBook) }
+            {/* { ConsoleLog(location.pathname) }
+            { ConsoleLog(locPathReadBook) } */}
                 {/* cek apakah halaman user ini memiliki url yang valid untuk membaca buku berdasarkan id buku */}
                 {
                     location.pathname === `/user/book/read/${locPathReadBook}` ? (
@@ -146,9 +144,5 @@ const Main =()=> {
         );
     }
 }
-
-
-
-
 
 export default Home

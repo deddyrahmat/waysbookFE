@@ -107,7 +107,7 @@ const Register = ({titleModal, classModalButton  }) => {
                     role : 'user'
                 }
             });
-            history.push('/home');
+            history.push('/user');
         }
         else{
             setMessageFailed("Register Failed")

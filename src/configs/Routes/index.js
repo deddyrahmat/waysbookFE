@@ -26,9 +26,9 @@ const Routes = () => {
                     <Home />
                 </Route> */}
                 
-                <PrivateRouteAdmin exact path="/admin/dashboard" component={Dashboard} />
 
                 <PrivateRoute path="/user" component={Home} />
+                <PrivateRouteAdmin path="/admin" component={Dashboard} />
                 
             {/* </Switch> */}
         </Router>

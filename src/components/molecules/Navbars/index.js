@@ -32,7 +32,7 @@ const Navbars = () => {
         <Fragment>
             <Navbar className="mt-3">
                 <Container>                    
-                    <Navbar.Brand as={Link} to="/admin/dashboard">
+                    <Navbar.Brand as={Link} to="/admin">
                         <img src={LogoSidebar} alt="Logo" className="img-fluid" />
                     </Navbar.Brand>
                     <Navbar.Toggle />

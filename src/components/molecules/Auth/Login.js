@@ -96,7 +96,7 @@ const Login = ({titleModal, classModalButton, ...rest  }) => {
 
             // cek role for redirect page where role user
             if (user[0].role == "admin") {
-                history.push('/admin/dashboard');                
+                history.push('/admin');                
             }else{
                 history.push('/user');
             }
