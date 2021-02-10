@@ -1,16 +1,16 @@
-import React, { Fragment, useContext } from 'react';
+import React, { Fragment, useContext, useEffect, useState } from 'react';
 import { Container,Row,Col } from 'react-bootstrap';
 import {
+    useLocation,
     useRouteMatch,
     Link
 } from "react-router-dom";
 
 // component
-import {Users} from '../../../FakeData';
 import {AppContext} from '../../../configs';
 
 // images
-import {LogoSidebar} from '../../../assets'
+import {LogoSidebar, Avatar} from '../../../assets'
 
 // styling
 import "./Sidebar.css";
@@ -24,12 +24,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Sidebar = () => {
 
+    let location = useLocation();
+    console.log("location sidebar", location);
+
     let { path, url } = useRouteMatch();
 
     const [state] = useContext(AppContext);
-    
-    // cari data user yang sesuai dengan user yang login dengan membandingkannya di localstorage id 
-    const user = Users.find(user => user.id == localStorage.getItem('id_user'));
 
     return (
         <Fragment>
@@ -43,12 +43,12 @@ const Sidebar = () => {
                 </Row>
                 <Row className="d-flex justify-content-center mb-4">
                     <Col className="text-center ">
-                        <img src={user.avatar} alt="avatar" className="sidebar-avatar rounded-circle shadow" />
+                        <img src={state.avatar === null ? Avatar : state.avatar} alt="avatar" className="sidebar-avatar rounded-circle shadow" />
                     </Col>
                 </Row>
                 <Row className="d-flex justify-content-center mb-4">
                     <Col className="text-center ">
-                        <h3 className="sidebar-fullname">{user.fullname}</h3>
+                        <h3 className="sidebar-fullname">{state.fullname}</h3>
                     </Col>
                 </Row>
                 <Row className="d-flex justify-content-center">
@@ -68,16 +68,16 @@ const Sidebar = () => {
                 <Row className="d-flex justify-content-center sidebar-menu-length">
                     <Col>
                     {/* <Link to={`${url}/profile`}>Profile</Link> */}
-                        <Link to={`${url}/profile`} className="sidebar-link">
-                            <p className="sidebar-menu"> <FontAwesomeIcon icon={faUser} className="sidebar-icon" />  Profile</p>                            
+                        <Link to={`${url}/profile`} className={location.pathname == `${url}/profile` ? "sidebar-link sidebar-active" : "sidebar-link"} >
+                            <p> <FontAwesomeIcon icon={faUser} className="sidebar-icon" />  Profile</p>                            
                         </Link>
                     </Col>
                 </Row>
 
                 <Row className="d-flex justify-content-center mb-5">
                     <Col>
-                        <Link to={`${url}/subscribe`} className="sidebar-link">
-                            <p className="sidebar-menu"> <FontAwesomeIcon icon={faFileInvoiceDollar} className="sidebar-icon" />  Subscribe</p>
+                        <Link to={`${url}/subscribe`} className={location.pathname == `${url}/subscribe` ? "sidebar-link sidebar-active" : "sidebar-link"}>
+                            <p> <FontAwesomeIcon icon={faFileInvoiceDollar} className="sidebar-icon" />  Subscribe</p>
                         </Link>
                     </Col>
                 </Row>
@@ -86,7 +86,7 @@ const Sidebar = () => {
 
                 <Row className="d-flex justify-content-center sidebar-menu-length">
                     <Col>
-                        <Link to="/" className="sidebar-link">
+                        <Link to="/logout" className="sidebar-link">
                             <p className="sidebar-menu"> <FontAwesomeIcon icon={faSignOutAlt} className="sidebar-icon" />  Logout</p>
                         </Link>
                     </Col>

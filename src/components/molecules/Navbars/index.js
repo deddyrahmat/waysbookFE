@@ -6,10 +6,10 @@ import {Link} from 'react-router-dom'
 import {AppContext} from '../../../configs';
 
 // fakedata
-import {Users} from '../../../FakeData';
+// import {Users} from '../../../FakeData';
 
 // images
-import {LogoSidebar} from '../../../assets';
+import {LogoSidebar, Avatar} from '../../../assets';
 
 // fonstawesome
 import { faBook } from "@fortawesome/free-solid-svg-icons";
@@ -24,9 +24,9 @@ const Navbars = () => {
 
     const [state] = useContext(AppContext);
     
-    const user = Users.find(user => user.id == localStorage.getItem('id_user'));
+    // const user = Users.find(user => user.id == localStorage.getItem('id_user'));
 
-    console.log("user nav", user);
+    // console.log("user nav", user);
 
     return (
         <Fragment>
@@ -38,7 +38,7 @@ const Navbars = () => {
                     <Navbar.Toggle />
                     
                     <Navbar.Collapse className="justify-content-end">
-                            <img src={user.avatar} alt="Logo" className="navbars-avatar rounded-circle" />
+                            <img src={state.avatar === null ? Avatar : state.avatar} alt="Logo" className="navbars-avatar rounded-circle" />
                             <NavDropdown id="basic-nav-dropdown">
 
                                 <NavDropdown.Item as={Link} to="/admin/addBook"  >

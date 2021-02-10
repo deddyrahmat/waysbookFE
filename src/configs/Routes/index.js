@@ -6,6 +6,7 @@ import {
 
 
 // components
+import { Logout } from "../../components";
 import { Landing, Home, Dashboard } from "../../pages";
 import PrivateRoute from './PrivateRoute';
 import PrivateRouteAdmin from './PrivateRouteAdmin';
@@ -20,6 +21,10 @@ const Routes = () => {
 
                 <Route exact path="/">
                     <Landing />
+                </Route>
+
+                <Route exact path="/logout">
+                    <Logout />
                 </Route>
 
                 {/* <Route path="/user">

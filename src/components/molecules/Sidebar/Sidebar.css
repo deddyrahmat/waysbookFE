@@ -23,14 +23,14 @@
     color: #D60000;
 }
 
-.sidebar-menu{
+/* .sidebar-menu{
     font-size: 25px !important;
     color: #929292 !important;
-}
+} */
 
-.sidebar-menu:hover {
+/* .sidebar-menu:hover {
     color: #666666 !important;
-}
+} */
 
 .sidebar-menu-length{
     margin-top: 70px;
@@ -43,6 +43,19 @@
 
 .sidebar-link{
     text-decoration: none !important;
+    font-size: 25px !important;
+    color: #929292 !important;
+}
+.sidebar-link:hover{
+    color: #666 !important;
+}
+
+.sidebar-active{
+    color: #D60000 !important;
+}
+
+.sidebar-active:hover{
+    color: #a80000 !important;
 }
 
 .sidebar-hr{

@@ -4,6 +4,7 @@ import LogoWOW from './images/logo.png';
 import LogoSidebar from './images/logo2.png';
 import HeroImage from './images/hero.png';
 import TitleHero from './images/title-hero.png';
+import Avatar from './images/avatar.jpg';
 
 // books
 import AlamKubur from "./books/3.png";
@@ -25,6 +26,6 @@ import AddBooks from './icons/add-book.png';
 
 
 export {
-    BackgroundLanding, LogoWOW, LogoSidebar, HeroImage, TitleHero, 
+    BackgroundLanding, LogoWOW, LogoSidebar, HeroImage, TitleHero, Avatar,
     AlamKubur, Serangkai, TessoftheRoad, BukuSiswa, 
     Wow, Attachment, AttachmentBook, Envelope, Gender, Maps, Phone, RightClick, AddList, AddBooks};

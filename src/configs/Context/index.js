@@ -6,8 +6,11 @@ const initialState = {
     modalLogin : false,
     modalRegister : false,
     auth : false,
+    fullname : '',
+    avatar : null,
     payment : false,
-    listBook : []
+    listBook : [],
+    isLoading : true// cek ketersedian token
 }
 
 const reducer = (state, action)=> {
@@ -24,23 +27,45 @@ const reducer = (state, action)=> {
                 ...state,
                 modalRegister : payload
             }
-        case "AUTH":
-            localStorage.setItem('id_user', payload.id )
+        case "USER_LOADED" : 
             return {
                 ...state,
                 auth : true,
+                isLoading : false,
+                isLogin : true,
+                fullname : payload.fullname,
+                avatar : payload.avatar,
                 role : payload.role
             }
-        case "PAYMENT":
+        case "AUTH":
+            localStorage.setItem("token", payload.token);
             return {
                 ...state,
-                payment : true,
+                auth : true,
+                fullname : payload.fullname,
+                avatar : payload.avatar,
+                role : payload.role
             }
+        // case "PAYMENT":
+        //     return {
+        //         ...state,
+        //         payment : true,
+        //     }
         case "ADD_LIST" :
             return {
                 ...state,
                 listBook : [payload]
             }
+
+        case "AUTH_ERROR":
+        case "LOGOUT":
+            localStorage.removeItem("token");
+            return {
+                ...state,
+                isLogin : false,
+                isLoading: false,
+                listBook : []
+            }    
         default:
             throw new Error();
     }

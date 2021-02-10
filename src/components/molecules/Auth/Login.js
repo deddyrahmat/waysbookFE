@@ -4,7 +4,8 @@ import { useHistory } from 'react-router-dom';
 
 // component
 import {Buttons, Inputs} from '../../';// same ../../index.js take file Buttons
-import {AppContext} from '../../../configs';
+import {AppContext, API, setAuthToken} from '../../../configs';
+
 
 // json Fake Data
 // import FakeData from '../../../json/FakeData.json'
@@ -71,37 +72,49 @@ const Login = ({titleModal, classModalButton, ...rest  }) => {
         password : ''
     });
     
-    const {email, password} = formData;
-
     const handleChangeLogin=(e)=> {
         setFormData({
             ...formData, [e.target.name]: e.target.value
         });
     }
     
-    const handleSubmit = (e) => {
+    const {email, password} = formData;
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // filter FakeData Users
-        let user = Users.filter(data => data.email === email && data.password === password)
-        // cek Auth User
-        if (user.length > 0) {
-            dispatch({
-                type : "AUTH",
-                payload: {
-                    id:user[0].id,
-                    role : user[0].role
-                }
-            });
+        try {
+            const body = JSON.stringify({ email, password });
 
-            // cek role for redirect page where role user
-            if (user[0].role == "admin") {
-                history.push('/admin');                
-            }else{
-                history.push('/user');
+            const config = {
+                headers: {
+                "Content-Type": "application/json",
+                },
+            };
+
+            const response = await API.post("/login", body, config);
+
+            console.log("hasil response login",response);     
+            const result = response.data.data.user;
+            if (response.status == 200) {
+                console.log("hasil response login",response.data.data.user);                
+                    dispatch({
+                    type : "AUTH",
+                    payload: result
+                });
+
+                setAuthToken(result.token);
+
+                // cek role for redirect page where role user
+                if (result.role == "admin") {
+                    history.push('/admin');                
+                }else{
+                    history.push('/user');
+                }
             }
-        }else{
+        } catch (err) {
             handleLoginFailed();
+            console.log("error : ", err);            
         }
     }
     
