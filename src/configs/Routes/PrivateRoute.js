@@ -20,7 +20,7 @@ const PrivateRoute = ({component : Component, ...rest}) => {
         <Route 
             {...rest}
             render={(props) => 
-                isLoading ? (<Loading />)
+                isLoading ? (<Loading className="d-flex justify-content-center align-items-center vh-100" />)
                 : auth ? 
                         state.role === 'user' ?
                             <Component {...props} /> : <Redirect to="/" />

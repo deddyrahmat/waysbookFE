@@ -1,14 +1,15 @@
-import React, { Fragment, useContext, useState } from 'react';
+import React, { Fragment, useContext, useState, useEffect } from 'react';
 import { Col, Container, Row, Modal } from 'react-bootstrap';
 import {useHistory, useRouteMatch,} from "react-router-dom";
 
 // component
-import {AppContext} from '../../../configs'
+import {AppContext, API} from '../../../configs'
 import {HeroImage} from '../';
+import {Loading} from '../../../components';
 
 
 // FakeData
-import {Books} from '../../../FakeData';
+// import {Books} from '../../../FakeData';
 
 // stying
 import './MainContent.css';
@@ -20,6 +21,10 @@ const MainContent = (props) => {
     let { path, url } = useRouteMatch();
     
     const [state] = useContext(AppContext);
+
+    const [books, setBooks] = useState([]);
+
+    const [isLoading, setLoading] = useState(true);
 
     // ======================================================
     // set modal for login failed
@@ -41,23 +46,41 @@ const MainContent = (props) => {
         }
     }
 
+    const loadBook = async () => {
+        try {
+            const response = await API('/books');
+            console.log("response books", response);
+            if (response.status == 200) {
+                setBooks(response.data.data.books);
+                setLoading(false);
+            }
+        } catch (err) {
+            console.log("Your System ", err);
+        }
+    }
+
+    useEffect(() => {
+        loadBook();
+    }, [])
+
 
     console.log("match from home", props.matchRouter);
     console.log("url from maincontent", url);
 
-    return (
+    console.log("books ", books);
+    return isLoading ? (<Loading className="d-flex justify-content-center align-items-center" />) : (
         <Fragment>
             <Container >
 
-                <HeroImage />
+                <HeroImage image={books[books.length - 1].thumbnail}  />
 
                 
                 <h3 className="title-list">List Books</h3>
                 <Row>
                     {
-                        Books.map(book => (
+                        books.map(book => (
                             <Col sm="12" md="3" key={book.id} style={{cursor: 'pointer'}} onClick={() => handleListBook(book.id)}>
-                                <img src={book.image} alt="list-books" className="img-fluid list-books" />
+                                <img src={book.thumbnail} alt="list-books" className="img-fluid list-books" />
                                 <p className="font-weight-bold mb-1 mt-3 text-truncate">{book.title}</p>
                                 <p className="text-muted">{book.author}</p>
                             </Col>

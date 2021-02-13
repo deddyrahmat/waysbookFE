@@ -9,7 +9,7 @@ import {AppContext, API, setAuthToken} from '../../../configs';
 
 // json Fake Data
 // import FakeData from '../../../json/FakeData.json'
-import {Users} from '../../../FakeData';
+// import {Users} from '../../../FakeData';
 
 // styling
 import "./Auth.css";

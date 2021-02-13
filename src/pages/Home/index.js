@@ -1,4 +1,4 @@
-import React, {Fragment, useContext} from 'react';
+import React, {Fragment, useContext, useEffect} from 'react';
 import { Row,Col, Container } from 'react-bootstrap';
 import {
     // BrowserRouter as Router,
@@ -10,7 +10,7 @@ import {
 } from "react-router-dom";
 
 // Component
-import {PrivateRoute} from '../../configs';
+import {PrivateRoute, API} from '../../configs';
 import { DetailBook, MainContent, Profile, Sidebar, Subscribe, ReadBook } from '../../components';
 import {AppContext} from '../../configs';
 import { LogoSidebar } from '../../assets';
@@ -24,15 +24,12 @@ const Home = () => {
 
     let location = useLocation();
 
-    const [state] = useContext(AppContext);
+    const [state, dispatch] = useContext(AppContext);
 
     let { path, url } = useRouteMatch();
 
-    // console.log("state di home di home", state);
-    // console.log("path di home", path);
-    // console.log("url di home", url);
-    // console.log("parameter di home", paramId);
-    // console.log("location di home", location);
+    // cek data user
+    
 
     // menyimpan url terakhir yang menyimpan id book ke variabel locPathReadBook untuk membaca buku
     const locPathReadBook = location.pathname.split("/").slice(-1)[0];
@@ -42,6 +39,30 @@ const Home = () => {
         console.log("log dari fun",child);
         return false
     }
+
+
+    const loadUser = async () => {
+        try {
+            const response = await API('/user');
+
+            if (response.status == 200) {
+                // console.log("response user home",response.data.data.user.transactions[0].remainingActive);    
+                if (response.data.data.user.transactions.length > 0) {
+                    if (response.data.data.user.transactions[0].remainingActive > 0) {
+                        dispatch({
+                            type : "PAYMENT"
+                        })
+                    }                    
+                }            
+            }
+        } catch (err) {
+            console.log("Your System ",err);
+        }
+    }
+
+    useEffect(() => {
+        loadUser();
+    }, [])
 
     return (
         <Fragment>

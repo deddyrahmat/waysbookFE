@@ -1,16 +1,16 @@
-import React, { Fragment, useContext, useEffect } from 'react';
+import React, { Fragment,useState, useContext, useEffect } from 'react';
 import { Container } from 'react-bootstrap';
 import {
     Link,
     useParams
 } from "react-router-dom";
+import ReactHtmlParser from 'react-html-parser';
 
 // styling
 import "./DetailBook.css";
 
 // component
-import {AppContext} from '../../../configs';
-import {Books} from '../../../FakeData';
+import {AppContext, API} from '../../../configs';
 import {Buttons} from '../../';// same ../../index.js take file Buttons
 
 // images
@@ -23,9 +23,29 @@ const AboutDetailBook = () => {
 
     const [state, dispatch] = useContext(AppContext);
 
-    const book = Books.find(book => book.id == id);
+    const [book, setBook] = useState([]);
 
+    // const book = Books.find(book => book.id == id);
+    const loadBookById = async () => {
+        try {
+            const response = await API(`/book/${id}`);
+
+            console.log("response getbook by id", response);
+            if (response.status == 200) {
+                setBook(response.data.data.book);
+            }
+        } catch (err) {
+            console.log("Your System ",err);
+        }
+    }
+
+
+    useEffect(() => {
+        loadBookById();
+    }, [])
     
+
+    console.log("book from get book by id",book);
     const handleListBook = (id) => {
 
         console.log("id dari about detail book", id)
@@ -48,7 +68,7 @@ const AboutDetailBook = () => {
                 <h3 className="title-AboutDetailBook">About This Book</h3>
 
                 <p className="desc-AboutDetailBook">
-                    {book.description}
+                    {ReactHtmlParser(book.about)};
                 </p>
 
                 <div className="d-flex justify-content-end">

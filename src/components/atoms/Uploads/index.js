@@ -6,11 +6,12 @@ import "./Uploads.css";
 
 const Uploads = ({className, Subscribe ,title,...rest}) => {
 
-    console.log("class title bokk", Subscribe);
+    console.log("class title bok upload", Subscribe);
     return (
         <Fragment>
             <Form.Group className={className}>
-                <Form.Label htmlFor="attachment" className="file-attachment">
+                {/* untuk input file id label for == id input file untuk menyesuaikkan form yang ingin diproses */}
+                <Form.Label htmlFor={typeof(Subscribe) == 'undefined' ? "attachmentBook" : "attachment" } className="file-attachment">
                     <p >{title}</p>
 
                     {
@@ -22,7 +23,18 @@ const Uploads = ({className, Subscribe ,title,...rest}) => {
                     }
                 </Form.Label>
 
-                <Form.File id="attachment" label="Example file input" className="d-none" {...rest} />                
+
+                {
+                    typeof(Subscribe) == 'undefined' ? (
+                        <Form.File id="attachmentBook" label="Example file input" className="d-none" {...rest} />                
+                        ): (
+                        <Form.File id="attachment" label="Example file input" className="d-none" {...rest} />                
+                    )
+                }
+
+                <Form.Text id="passwordHelpBlock" muted>
+                    Max size of File is 5 MB.
+                </Form.Text>
             </Form.Group>
         </Fragment>
     )

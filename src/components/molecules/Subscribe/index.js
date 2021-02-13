@@ -32,9 +32,11 @@ const Subscribe = () => {
     // set progres upload file
     const [progressUpload, setProgressUpload] = useState(0);
     
+    // state modal image
     const [imageModal, setImageModal] = useState(false);
     const handleCloseImage = () => setImageModal(false);
     const handleShowModalImage = () => setImageModal(true);
+    // state modal image
     
 
     // modal progress uplaod
@@ -190,7 +192,7 @@ const Subscribe = () => {
                 </Modal.Body>
             </Modal>
 
-            <Modal size="lg" show={modalProgressUpload} onHide={toggleProgressUpload} className="d-flex justify-content-center align-items-center w-100">
+            <Modal size="lg" dialogClassName="modal-90w" show={modalProgressUpload} onHide={toggleProgressUpload} className="d-flex justify-content-center align-items-center w-100">
                 <Modal.Body >
                     <div className="text-center">{progressUpload}%</div>
                     {/* <Progress value={progressUpload} /> */}

@@ -1,26 +1,51 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import {
     useParams
 } from "react-router-dom";
 
 // component
-import {Books} from '../../../FakeData';
+import {API} from '../../../configs';
+import {Loading} from '../../';
 
 // styling
 import './DetailBook.css';
 
 const InfoDetailBook = () => {
+
+    const [isLoading, setLoading] = useState(true);
+
     const {id} = useParams();
     console.log("log id dari info detail book ", id);
-    const book = Books.find(book => book.id == id);
+
+    const [book, setBook] = useState([]);
+
+    // const book = Books.find(book => book.id == id);
+    const loadBookById = async () => {
+        try {
+            const response = await API(`/book/${id}`);
+
+            console.log("response getbook by id", response);
+            if (response.status == 200) {
+                setBook(response.data.data.book);
+                setLoading(false);
+            }
+        } catch (err) {
+            console.log("Your System ",err);
+        }
+    }
+
+
+    useEffect(() => {
+        loadBookById();
+    }, [])
     
-    return (
+    return isLoading ? (<Loading />) : (
         <Fragment>
             <Container>
                 <Row>
                     <Col md="5">
-                        <img src={book.image} alt="detail-book" className="image-detail-book" />
+                        <img src={book.thumbnail} alt="detail-book" className="image-detail-book" />
                     </Col>
                     <Col md="7" className="mt-1">
                         <div className="container-detail-book">
@@ -30,7 +55,7 @@ const InfoDetailBook = () => {
                         
                         <div className="container-detail-book">
                             <h2 className="date-detail-book size-detail-book">Publication Date</h2>
-                            <small className="sub-detail-book">{book.publication}</small>
+                            <small className="sub-detail-book">{book.publicationDate}</small>
                         </div>
                         
                         <div className="container-detail-book">

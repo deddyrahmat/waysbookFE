@@ -46,11 +46,11 @@ const reducer = (state, action)=> {
                 avatar : payload.avatar,
                 role : payload.role
             }
-        // case "PAYMENT":
-        //     return {
-        //         ...state,
-        //         payment : true,
-        //     }
+        case "PAYMENT":
+            return {
+                ...state,
+                payment : true,
+            }
         case "ADD_LIST" :
             return {
                 ...state,

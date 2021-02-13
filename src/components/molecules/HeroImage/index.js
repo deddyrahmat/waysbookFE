@@ -4,13 +4,11 @@ import { Row, Col } from 'react-bootstrap';
 // images
 import {TitleHero} from '../../../assets'
 
-// fake data
-import {Books} from '../../../FakeData';
-
 // styling
 import "./HeroImage.css";
 
-const HeroImage = () => {
+const HeroImage = (props) => {
+    console.log("props hero image", props.image);
     return (
         <Fragment>
             <Row>
@@ -21,7 +19,7 @@ const HeroImage = () => {
                                 <img src={TitleHero} alt="title Hero" className="img-fluid " />
                             </Col>
                             <Col md="4" >
-                                <img src={Books[Books.length - 1].image} alt="Hero" className="img-fluid hero-book" />
+                                <img src={props.image} alt="Hero" className="img-fluid hero-book" />
                             </Col>
                         </Row>
                     </div>

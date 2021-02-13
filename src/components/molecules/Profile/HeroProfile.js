@@ -38,7 +38,7 @@ const HeroProfile = () => {
 
     console.log("state dari profile", state);
     console.log("user dari profile", detailUser);
-    return isLoading ? (<Loading />) : (
+    return isLoading ? (<Loading className="d-flex justify-content-center align-items-center" />) : (
         <Fragment>
             <Container>
                 <h2 className="title-profile">Profile</h2>

@@ -4,10 +4,10 @@ import { useHistory } from 'react-router-dom';
 
 // component
 import {Buttons, Inputs} from '../../';// same ../../index.js take file Buttons
-import {AppContext} from '../../../configs';
+import {AppContext, API, setAuthToken} from '../../../configs';
 
 // json Fake Data
-import {Users} from '../../../FakeData'
+import {Users} from '../../../FakeData';
 
 // styling
 import "./Auth.css";
@@ -66,50 +66,50 @@ const Register = ({titleModal, classModalButton  }) => {
         fullname : ''
     });
     
-    const {email, password, fullname} = formDataRegister;
-
+    
     const handleChangeRegister=(e)=> {
         setFormDataRegister({
             ...formDataRegister, [e.target.name]: e.target.value
         });
     }
+
+    const {email, password, fullname} = formDataRegister;
     
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // filter FakeData Users
+        try {
+            const body = JSON.stringify({email,password, fullname});
 
-        const filterUser = () => Users.filter(data => data.email === email);
-        let user = filterUser();
-        // cek Auth User
-        if (user.length > 0) {
-            console.log("filter user", user);
-            
-            setMessageFailed("Username has been used")
-            handleRegisterFailed();
-        }else if(user.length === 0){
-            Users.push({
-                id:Users.length+1,
-                fullname,
-                email,
-                password,
-                avatar: "https://images.unsplash.com/photo-1567446537708-ac4aa75c9c28?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80",
-                role : "user"
-            })
-
-            let cekUser = filterUser();
-
-            console.log("cek user setelah push",cekUser);
-            dispatch({
-                type : "AUTH",
-                payload: {
-                    id : Users.length,
-                    role : 'user'
+            const config = {
+                headers : {
+                    "Content-Type": "application/json",
                 }
-            });
-            history.push('/user');
-        }
-        else{
+            }
+
+            const response = await API.post('/register',body,config);
+
+            console.log("response register", response);
+            const result = response.data.data.user;
+
+            if (response.status == 200) {
+                dispatch({
+                    type : "AUTH",
+                    payload: {
+                        id : result.id,
+                        fullname : result.fullname,
+                        avatar : null,
+                        role : 'user',
+                        token : result.token
+                    }
+                });
+
+                setAuthToken(result.token);
+                history.push('/user');
+            }
+
+        } catch (err) {
+            console.log("Your System Error : ", err);
             setMessageFailed("Register Failed")
             handleRegisterFailed();
         }
