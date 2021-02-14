@@ -8,8 +8,6 @@ import {AppContext} from '../../../configs';
 // styling
 import "./Profile.css";
 
-// FakeData
-import {Books} from '../../../FakeData';
 
 const ListBookProfile = () => {
 
@@ -19,10 +17,7 @@ const ListBookProfile = () => {
 
     const [state] = useContext(AppContext);
 
-    const [myListBook, setMyListBook] = useState([]);
-
     console.log("list book check url ", url);
-    console.log("list book ", state.listBook);
     let location = useLocation();
     console.log("location list book", location);
 
@@ -46,19 +41,7 @@ const ListBookProfile = () => {
         }
     }
 
-    useEffect(() => {
-        for (let list = 0; list < state.listBook.length; list++) {
-            console.log("log dari for useEffect", list);
-            console.log("panjang dari for useEffect", state.listBook.length);
-            setMyListBook(Books.filter(book => state.listBook[list] == book.id))
-            console.log("hasil akhir", Books.filter(book => state.listBook[list] == book.id));
-        };
-    }, [state.listBook])
-
-    let lists= Books.filter(book => state.listBook[0] == book.id);
-
-    console.log("result li", lists);
-    console.log("result myList Book", myListBook);
+    console.log("result myList Book", state.listBook);
 
     return (
         <Fragment>
@@ -66,14 +49,14 @@ const ListBookProfile = () => {
                 <h3 className="title-list">My List Books</h3>
                 <Row>
                     {
-                        myListBook.length == 0 ? (
+                        state.listBook.length == 0 ? (
                             <Col className="d-flex justify-content-center">
                                 <h3 className="text-danger text-center">List Book Not Found</h3>
                             </Col>
                         ):(
-                            myListBook.map(book => (
+                            state.listBook.map(book => (
                                 <Col sm="12" md="3" key={book.id} style={{cursor: 'pointer'}} onClick={() => handleListBook(book.id)}>
-                                    <img src={book.image} alt="list-books" className="img-fluid list-books" />
+                                    <img src={book.thumbnail} alt="list-books" className="img-fluid list-books" />
                                     <p className="font-weight-bold mb-1 mt-3 text-truncate">{book.title}</p>
                                     <p className="text-muted">{book.author}</p>
                                 </Col>

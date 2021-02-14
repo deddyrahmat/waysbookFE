@@ -33,22 +33,26 @@ const Home = () => {
 
     // menyimpan url terakhir yang menyimpan id book ke variabel locPathReadBook untuk membaca buku
     const locPathReadBook = location.pathname.split("/").slice(-1)[0];
-
+    
     // function untuk memanggil console log di compoennt react
     const ConsoleLog = (child) => {
         console.log("log dari fun",child);
         return false
     }
-
+    
+    // ==============================================================================
+    // responseUserPayment
+    // ==============================================================================
 
     const loadUser = async () => {
         try {
-            const response = await API('/user');
+            const responseUserPayment = await API('/user');
+            console.log("responseUserPayment", responseUserPayment);
 
-            if (response.status == 200) {
+            if (responseUserPayment.status == 200) {
                 // console.log("response user home",response.data.data.user.transactions[0].remainingActive);    
-                if (response.data.data.user.transactions.length > 0) {
-                    if (response.data.data.user.transactions[0].remainingActive > 0) {
+                if (responseUserPayment.data.data.user.transactions.length > 0) {
+                    if (responseUserPayment.data.data.user.transactions[0].remainingActive > 0) {
                         dispatch({
                             type : "PAYMENT"
                         })
@@ -62,7 +66,35 @@ const Home = () => {
 
     useEffect(() => {
         loadUser();
-    }, [])
+    }, []);
+
+    // ==============================================================================
+    // responseBookUser
+    // ==============================================================================
+
+    const loadBookUser = async () => {
+        try {
+            const responseBookUser = await API('/bookuser');
+            console.log("responseBookUser", responseBookUser.data.data.user.Books);
+
+            if (responseBookUser.status == 200) {
+                // console.log("response user home",response.data.data.user.transactions[0].remainingActive);    
+                if (responseBookUser.data.data.user.Books.length > 0) {
+                    const result = responseBookUser.data.data.user.Books;
+                    dispatch({
+                        type : "ADD_LIST",
+                        payload : result
+                    })
+                }            
+            }
+        } catch (err) {
+            console.log("Your System ",err);
+        }
+    }
+
+    useEffect(() => {
+        loadBookUser();
+    }, []);
 
     return (
         <Fragment>

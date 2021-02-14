@@ -1,5 +1,5 @@
 import React, { Fragment,useState, useContext, useEffect } from 'react';
-import { Container } from 'react-bootstrap';
+import { Container, Modal } from 'react-bootstrap';
 import {
     Link,
     useParams
@@ -12,6 +12,7 @@ import "./DetailBook.css";
 // component
 import {AppContext, API} from '../../../configs';
 import {Buttons} from '../../';// same ../../index.js take file Buttons
+import {Loading} from '../../';
 
 // images
 import {RightClick, AddList} from '../../../assets'
@@ -25,6 +26,14 @@ const AboutDetailBook = () => {
 
     const [book, setBook] = useState([]);
 
+    const [isLoading, setLoading] = useState(true);
+
+    // setModal Loading
+    const [showModalLoading, setShowModalLoading] = useState(false);
+    const handleCloseLoading = () => setShowModalLoading(false);
+    const handleShowModalLoading = () => setShowModalLoading(true);
+    // setModal Loading
+
     // const book = Books.find(book => book.id == id);
     const loadBookById = async () => {
         try {
@@ -33,6 +42,7 @@ const AboutDetailBook = () => {
             console.log("response getbook by id", response);
             if (response.status == 200) {
                 setBook(response.data.data.book);
+                setLoading(false);
             }
         } catch (err) {
             console.log("Your System ",err);
@@ -46,38 +56,57 @@ const AboutDetailBook = () => {
     
 
     console.log("book from get book by id",book);
-    const handleListBook = (id) => {
+    const handleListBook = async (id) => {
+
+        const body = JSON.stringify({ id });
+
+        const config = {
+            headers: {
+            "Content-Type": "application/json",
+            },
+        };
 
         console.log("id dari about detail book", id)
-
-        dispatch({
-            type : "ADD_LIST",
-            payload : id
-        })
+        const response = await API.post('/bookuser', body, config);
+        console.log("response add list", response);
+        handleShowModalLoading();
+        if (response.status == 200) {
+            dispatch({
+                type : "ADD_LIST",
+                payload : response.data.data.user.Books
+            })
+            handleCloseLoading();
+        }
     };
     
-    // useEffect(() => {
-    //     handleListBook();
-    // }, [state.listBook])
+    useEffect(() => {
+    }, [state.listBook])
 
     console.log("state dari about detail book ", state);
     console.log("state length dari about detail book ", state.listBook.length);
-    return (
+
+    const activeAddList = state.listBook.map(list => book.id == list.id).filter(check => check == true );
+    console.log("hasil tes map", activeAddList);
+
+    // const activeAddList = tes.filter(check => check == true );
+    // console.log("hasil tes filter", activeAddList);
+    return isLoading ? (<Loading />) : (
         <Fragment>
             <Container>
                 <h3 className="title-AboutDetailBook">About This Book</h3>
 
                 <p className="desc-AboutDetailBook">
-                    {ReactHtmlParser(book.about)};
+                    {ReactHtmlParser(book.about)}
                 </p>
 
                 <div className="d-flex justify-content-end">
                     {
                         state.listBook.length >= 0 && (
 
-                            book.id != state.listBook[0] && (
+                            // state.listBook.map(list => book.id != list.id)
+                            activeAddList.length == 0  ? (
                                 <Buttons className="buttons-red font-weight-bold mt-2 mb-2 mr-3"  type="submit" title="Add My List" icon={AddList} onClick={() => handleListBook(book.id)} />
-                            )
+                            ):null
 
                         )
                     }
@@ -89,6 +118,15 @@ const AboutDetailBook = () => {
                 </div>
 
             </Container>
+
+            {/* ================================== */}
+            {/* modal loading */}
+            {/* ================================== */}
+            <Modal size="lg" show={showModalLoading} className="d-flex justify-content-center align-items-center w-100">
+                <Modal.Body >
+                    <Loading />
+                </Modal.Body>
+            </Modal>
         </Fragment>
     )
 }

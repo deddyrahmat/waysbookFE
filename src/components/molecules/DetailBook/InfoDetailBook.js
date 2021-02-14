@@ -3,6 +3,8 @@ import { Col, Container, Row } from 'react-bootstrap';
 import {
     useParams
 } from "react-router-dom";
+import moment from 'moment';
+import Moment from 'react-moment';
 
 // component
 import {API} from '../../../configs';
@@ -55,7 +57,9 @@ const InfoDetailBook = () => {
                         
                         <div className="container-detail-book">
                             <h2 className="date-detail-book size-detail-book">Publication Date</h2>
-                            <small className="sub-detail-book">{book.publicationDate}</small>
+                            <small className="sub-detail-book">
+                                <Moment format='MMM YYYY'>{book.publicationDate}</Moment>
+                            </small>
                         </div>
                         
                         <div className="container-detail-book">

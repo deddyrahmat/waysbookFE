@@ -54,7 +54,7 @@ const reducer = (state, action)=> {
         case "ADD_LIST" :
             return {
                 ...state,
-                listBook : [payload]
+                listBook : payload
             }
 
         case "AUTH_ERROR":
@@ -64,6 +64,7 @@ const reducer = (state, action)=> {
                 ...state,
                 isLogin : false,
                 isLoading: false,
+                payment: false,
                 listBook : []
             }    
         default:
