@@ -1,5 +1,5 @@
-import React, {Fragment, useContext, useEffect} from 'react';
-import { Row,Col, Container } from 'react-bootstrap';
+import React, {Fragment, useContext, useEffect, useState} from 'react';
+import { Row,Col, Container, Alert } from 'react-bootstrap';
 import {
     // BrowserRouter as Router,
     Switch,
@@ -28,8 +28,8 @@ const Home = () => {
 
     let { path, url } = useRouteMatch();
 
-    // cek data user
-    
+    const [statPay, setStatPay] = useState(null);
+    const [descCancel, setDescCancel] = useState(null);
 
     // menyimpan url terakhir yang menyimpan id book ke variabel locPathReadBook untuk membaca buku
     const locPathReadBook = location.pathname.split("/").slice(-1)[0];
@@ -52,6 +52,9 @@ const Home = () => {
             if (responseUserPayment.status == 200) {
                 // console.log("response user home",response.data.data.user.transactions[0].remainingActive);    
                 if (responseUserPayment.data.data.user.transactions.length > 0) {
+                    // setStatPay("tes")
+                    setStatPay(responseUserPayment.data.data.user.transactions[0].paymentStatus)
+                    setDescCancel(responseUserPayment.data.data.user.transactions[0].descCancel)
                     if (responseUserPayment.data.data.user.transactions[0].remainingActive > 0) {
                         dispatch({
                             type : "PAYMENT"
@@ -63,7 +66,7 @@ const Home = () => {
             console.log("Your System ",err);
         }
     }
-
+    
     useEffect(() => {
         loadUser();
     }, []);
@@ -71,12 +74,12 @@ const Home = () => {
     // ==============================================================================
     // responseBookUser
     // ==============================================================================
-
+    
     const loadBookUser = async () => {
         try {
             const responseBookUser = await API('/bookuser');
             console.log("responseBookUser", responseBookUser.data.data.user.Books);
-
+            
             if (responseBookUser.status == 200) {
                 // console.log("response user home",response.data.data.user.transactions[0].remainingActive);    
                 if (responseBookUser.data.data.user.Books.length > 0) {
@@ -95,9 +98,23 @@ const Home = () => {
     useEffect(() => {
         loadBookUser();
     }, []);
-
+    
+    console.log("status payment", statPay);
+    console.log("status desc cancel", descCancel);
+    
     return (
         <Fragment>
+            {
+                statPay === "Pending" ? (
+                    <Alert variant="warning" className="text-center">
+                        Please wait for confirmation from admin.
+                    </Alert>
+                ) : statPay === "Cancel" ? (
+                    <Alert variant="danger" className="text-center">
+                        Transaksi Gagal : {descCancel}
+                    </Alert>
+                ) : null
+            }
             {/* <Router> */}
             {/* { ConsoleLog(location.pathname) }
             { ConsoleLog(locPathReadBook) } */}

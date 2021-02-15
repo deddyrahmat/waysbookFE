@@ -216,7 +216,7 @@ const AddBook = () => {
 
                             <div className="d-flex">
 
-                                <Uploads onChange={handleImageTransaction} className="w-25 add-book" title="Thumbnile Book"/>
+                                <Uploads onChange={handleImageTransaction} className="w-25 add-book" title="Thumbnile Book" Subscribe="Aktif" />
 
                                 {
                                     image.preview && (

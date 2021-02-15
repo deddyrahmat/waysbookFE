@@ -99,7 +99,15 @@ const Transactions = () => {
         e.preventDefault();
 
         try {
-            const response = await API.patch(`/cancel-transaction/${idTransactionCancel}`);
+            const body = JSON.stringify({ descCancel: descTransactionCancel});
+
+            const config = {
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            };
+
+            const response = await API.patch(`/cancel-transaction/${idTransactionCancel}`,body,config);
             console.log("response cance", response);
 
             if (response.status == 200) {

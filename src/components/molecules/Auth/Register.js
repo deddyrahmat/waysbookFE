@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom';
 // component
 import {Buttons, Inputs} from '../../';// same ../../index.js take file Buttons
 import {AppContext, API, setAuthToken} from '../../../configs';
+import {Loading} from '../../../components';
 
 // json Fake Data
 import {Users} from '../../../FakeData';
@@ -23,6 +24,12 @@ const Register = ({titleModal, classModalButton  }) => {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
+    // setModal Loading
+    const [showModalLoading, setShowModalLoading] = useState(false);
+    const handleCloseLoading = () => setShowModalLoading(false);
+    const handleShowModalLoading = () => setShowModalLoading(true);
+    // setModal Loading
+
 
     // set modal login when user click link
     const handleLogin = () => {
@@ -31,6 +38,7 @@ const Register = ({titleModal, classModalButton  }) => {
             type: "MODAL_LOGIN",
             payload : !state.modalLogin
         });
+        handleCloseLoading();
     }
     // set modal login when user click link
 
@@ -87,6 +95,7 @@ const Register = ({titleModal, classModalButton  }) => {
                 }
             }
 
+            handleShowModalLoading();
             const response = await API.post('/register',body,config);
 
             console.log("response register", response);
@@ -158,6 +167,15 @@ const Register = ({titleModal, classModalButton  }) => {
                     <p className="modal-failed">{messageFailed}</p>
                 </Modal.Body>
             </Modal>
+
+            {/* ================================== */}
+                {/* modal loading */}
+                {/* ================================== */}
+                <Modal size="lg" show={showModalLoading} className="d-flex justify-content-center align-items-center w-100">
+                    <Modal.Body >
+                        <Loading />
+                    </Modal.Body>
+                </Modal>
         </Fragment>
     )
 }
