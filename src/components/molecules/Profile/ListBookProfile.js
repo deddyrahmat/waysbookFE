@@ -4,6 +4,7 @@ import {useHistory, useRouteMatch, useLocation} from "react-router-dom";
 
 // component
 import {AppContext, API} from '../../../configs';
+import { Buttons } from '../../atoms';
 import Loading from '../../atoms/Loading';
 
 // styling
@@ -101,10 +102,11 @@ const ListBookProfile = () => {
                             </Col>
                         ):(
                             detailUser.purchasesbooks.map(book => (
-                                <Col sm="12" md="3" key={book.id} style={{cursor: 'pointer'}} onClick={() => download(book.thumbnail)}>
+                                <Col sm="12" md="3" key={book.id} style={{cursor: 'pointer'}} >
                                     <img src={book.thumbnail} alt="list-books" className="img-fluid list-books" />
                                     <p className="font-weight-bold mb-1 mt-3 text-truncate">{book.title}</p>
                                     <p className="text-muted">{book.author}</p>
+                                    <Buttons onClick={() => download(book.thumbnail)} title="Download" className="buttons-black px-5 font-weight-bold" />
                                 </Col>
                             )).reverse()
                         )
