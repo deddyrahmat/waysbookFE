@@ -25,7 +25,7 @@ const HeroProfile = () => {
                 const response = await API('/user');
 
                 if (response.status == 200) {
-                    setDetailUser(response.data.data.user);
+                    setDetailUser(response.data.data.profile);
                     setIsLoading(false);
                 }
             } catch (err) {
@@ -40,7 +40,7 @@ const HeroProfile = () => {
     console.log("user dari profile", detailUser);
     return isLoading ? (<Loading className="d-flex justify-content-center align-items-center" />) : (
         <Fragment>
-            <Container>
+            <Container className="height-content mb-3">
                 <h2 className="title-profile">Profile</h2>
 
                 <Row>

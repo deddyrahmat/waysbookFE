@@ -10,6 +10,7 @@ import Subscribe from './Subscribe';
 import Profile from './Profile';
 import DetailBook from './DetailBook';
 import ReadBook from './ReadBook';
+import Cart from './Cart';
 
 
 // admin
@@ -19,6 +20,6 @@ import AddBook from './Book/AddBook';
 
 export {
     Register, Login,
-    Sidebar, HeroImage, MainContent, Subscribe,Profile,DetailBook,ReadBook,
+    Sidebar, HeroImage, MainContent, Subscribe,Profile,DetailBook,ReadBook,Cart,
     Navbars, Transactions, AddBook
 }

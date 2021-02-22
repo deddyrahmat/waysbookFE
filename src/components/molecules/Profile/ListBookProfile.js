@@ -3,7 +3,8 @@ import { Container, Row, Col, Modal } from 'react-bootstrap';
 import {useHistory, useRouteMatch, useLocation} from "react-router-dom";
 
 // component
-import {AppContext} from '../../../configs';
+import {AppContext, API} from '../../../configs';
+import Loading from '../../atoms/Loading';
 
 // styling
 import "./Profile.css";
@@ -16,6 +17,10 @@ const ListBookProfile = () => {
     const history = useHistory();
 
     const [state] = useContext(AppContext);
+
+    const [detailUser, setDetailUser] =useState([]);
+
+    const [isLoading, setIsLoading] = useState(true);
 
     console.log("list book check url ", url);
     let location = useLocation();
@@ -41,21 +46,38 @@ const ListBookProfile = () => {
         }
     }
 
-    console.log("result myList Book", state.listBook);
+    useEffect(() => {
+        const fetchUsers = async ( )=> {
+            try {
+                const response = await API('/user');
 
-    return (
-        <Fragment>
-            <Container >
-                <h3 className="title-list">My List Books</h3>
+                if (response.status == 200) {
+                    setDetailUser(response.data.data.profile);
+                    setIsLoading(false);
+                }
+            } catch (err) {
+                console.log("Your System Error : ", err);
+            }
+        }
+
+        fetchUsers();
+    }, []);
+
+    console.log("result detailUser Book", detailUser);
+
+    return isLoading ? (<Loading className="d-flex justify-content-center align-items-center" />) : (
+        <Fragment >
+            <Container className="mb-3">
+                <h3 className="title-list">My Books</h3>
                 <Row>
                     {
-                        state.listBook.length == 0 ? (
+                        detailUser.purchasesbooks.length === 0 ? (
                             <Col className="d-flex justify-content-center">
-                                <h3 className="text-danger text-center">List Book Not Found</h3>
+                                <h3 className="text-danger text-center">Book Not Found</h3>
                             </Col>
                         ):(
-                            state.listBook.map(book => (
-                                <Col sm="12" md="3" key={book.id} style={{cursor: 'pointer'}} onClick={() => handleListBook(book.id)}>
+                            detailUser.purchasesbooks.map(book => (
+                                <Col sm="12" md="3" key={book.id} style={{cursor: 'pointer'}} onClick={() => book.bookFile}>
                                     <img src={book.thumbnail} alt="list-books" className="img-fluid list-books" />
                                     <p className="font-weight-bold mb-1 mt-3 text-truncate">{book.title}</p>
                                     <p className="text-muted">{book.author}</p>

@@ -23,11 +23,16 @@ function App() {
       }else if (response.status === 200) {
 
         // set state sesuai data auth user dari token dan jalankan private route
-        return dispatch({
+        dispatch({
           type: "USER_LOADED",
           payload: response.data.data
         });        
+
+        return dispatch({
+          type: "UPDATE_CART",
+        });
       }
+
 
       // console.log(state);
       console.log("hasil response",response.data.data);

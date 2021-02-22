@@ -1,27 +1,27 @@
-.buttons-red{
-    background: #D60000 !important;
+.buttons-black{
+    background: #393939 !important;
     border: none !important;
-    border-radius: 5px !important;
+    border-radius: 1px !important;
 
     /* font-weight: 800 !important; */
     font-size: 18px !important;
 }
 
-.buttons-red:focus{
-    box-shadow: 0 0 0 0.2rem rgba(221, 11, 11, 0.5) !important;
+.buttons-black:focus{
+    box-shadow: 0 0 0 0.2rem rgba(53, 47, 47, 0.5) !important;
 }
 
 
-.buttons-grey{
+.buttons-transparent{
     color: black !important;
-    background: rgba(205, 205, 205, 0.7) !important;
-    border: none !important;
-    border-radius: 5px !important;
+    background: transparent!important;
+    border: 2px solid #393939 !important;
+    border-radius: 1px !important;
 
     /* font-weight: 800 !important; */
     font-size: 18px !important;
 }
 
-.buttons-grey:focus{
+.buttons-transparent:focus{
     box-shadow: 0 0 0 0.2rem rgba(218, 218, 218, 0.5) !important;
 }

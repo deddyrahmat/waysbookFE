@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { Table, NavDropdown, Container, Modal, Form, Button } from 'react-bootstrap';
+import NumberFormat from 'react-number-format';
 
 // component
 import {API} from '../../../configs';
@@ -135,9 +136,9 @@ const Transactions = () => {
                         <tr>
                         <th className="head-transactions">No</th>
                         <th className="head-transactions">Users</th>
-                        <th className="head-transactions">Bukti Transfer</th>
-                        <th className="head-transactions">Remaining Active</th>
-                        <th className="head-transactions">Status User</th>
+                        <th className="head-transactions">Evidence of Transfer</th>
+                        <th className="head-transactions">Product Purchased</th>
+                        <th className="head-transactions">Total Payment</th>
                         <th className="head-transactions">Status Payment</th>
                         <th className="head-transactions">Action</th>
                         </tr>
@@ -150,22 +151,35 @@ const Transactions = () => {
                                 transactions.map(transaction => (
                                     <tr key={transaction.id}>
                                         <td>{no++}</td>
-                                        <td>{transaction.user.fullname.charAt(0).toUpperCase() + transaction.user.fullname.slice(1)}</td>
-                                        <td align="center">
-                                            <img src={transaction.transferProof} alt="transfer_image" style={{cursor:"pointer"}} onClick={() => {
-                                                setfileImage(transaction.transferProof);
+                                        <td className="text-capitalize">{transaction.user.fullname}</td>
+                                        <td>
+                                            <img src={transaction.attachment} alt="transfer_image" style={{cursor:"pointer"}} onClick={() => {
+                                                setfileImage(transaction.attachment);
                                                 toogleImage();
                                             }} width="30px" height="30px" />
                                         </td>
-                                        <td>{transaction.remainingActive} / Hari</td>
-                                        <td className={transaction.userStatus == "Active" ? "text-success" : "text-danger"} >
-                                            {transaction.userStatus}
-                                        </td>
-                                        <td className={transaction.paymentStatus == 'Approved' ? "status-payment-approve" : transaction.paymentStatus == 'Pending' ? "status-payment-pending" : "status-payment-cancel" } >
-                                            {transaction.paymentStatus}
+                                        <td>
+                                            {
+                                                transaction.purchasedbooks.map(book => {
+                                                    return book.title
+                                                }).join()
+                                            }
                                         </td>
                                         <td>
-                                            {transaction.paymentStatus == 'Pending' ? (
+                                            <NumberFormat 
+                                                value={transaction.totalPayment} 
+                                                displayType={'text'} 
+                                                thousandSeparator={true} 
+                                                prefix={'Rp. '} 
+                                                renderText={
+                                                    value => <small className={transaction.userStatus == 'Approved' ? "status-payment-approve" : transaction.userStatus == 'Pending' ? "status-payment-pending" : "status-payment-cancel" }>{value}</small>
+                                                } />
+                                        </td>
+                                        <td className={transaction.userStatus == 'Approved' ? "status-payment-approve" : transaction.userStatus == 'Pending' ? "status-payment-pending" : "status-payment-cancel" } >
+                                            {transaction.userStatus}
+                                        </td>
+                                        <td>
+                                            {transaction.userStatus == 'Pending' ? (
                                                 <NavDropdown id="basic-nav-dropdown">
                                                     <NavDropdown.Item onClick={() => {handleApprove(transaction.id)}} className="status-payment-approve">Approved</NavDropdown.Item>
                                                     

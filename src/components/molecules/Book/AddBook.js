@@ -1,6 +1,7 @@
 import React, { Fragment, useState } from 'react';
 import { Col, Container, Row, Modal, Form, ProgressBar } from 'react-bootstrap';
-import {Redirect} from 'react-router-dom'
+import {Redirect} from 'react-router-dom';
+import NumberFormat from 'react-number-format';
 
 // utils CKEDITOR
 import { CKEditor } from '@ckeditor/ckeditor5-react';
@@ -8,7 +9,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 // component
 import {API} from '../../../configs';
-import { Inputs,Uploads, Buttons } from '../../atoms';
+import { Inputs,Uploads, Buttons, Loading } from '../../atoms';
 import { AddBooks } from '../../../assets';
 
 
@@ -28,7 +29,8 @@ const AddBook = () => {
         pages : "",
         author : "",
         isbn : "",
-        about : ""
+        description : "",
+        price : ''
     });
 
     
@@ -41,12 +43,10 @@ const AddBook = () => {
     
     const handleFileBookTransaction = (e) => {
         if (e.target.files.length) {
-            if (e.target.files[0].type == "application/epub+zip") {
-                setFileBook({
-                    preview : e.target.files[0].name,
-                    raw : e.target.files[0]
-                })
-            }
+            setFileBook({
+                preview : e.target.files[0].name,
+                raw : e.target.files[0]
+            })
         }
         
         console.log("file book",fileBook);
@@ -76,7 +76,7 @@ const AddBook = () => {
     const handleCKEditor = ( event, editor ) => {
         const data = editor.getData();
         // console.log( { event, editor, data } );
-        setBook({...book,about : data});
+        setBook({...book,description : data});
     }
 
     // state modal image
@@ -96,6 +96,11 @@ const AddBook = () => {
     const toggleFailed = () => setModalFailed(!modalFailed);
     // modal post failed
 
+    // modal post Loading
+    const [modalLoading, setModalLoading] = useState(false);
+    const toggleLoading = () => setModalLoading(!modalLoading);
+    // modal post Loading
+
     // modal progress uplaod
     const [modalProgressUpload, setmodalProgressUpload] = useState(false);    
     const toggleProgressUpload = () => setmodalProgressUpload(!modalProgressUpload);
@@ -106,7 +111,8 @@ const AddBook = () => {
         pages,
         author,
         isbn,
-        about 
+        description,
+        price
     } = book;
 
     const handleOnSubmit = async (e) => {
@@ -121,7 +127,8 @@ const AddBook = () => {
             body.append("pages", pages);
             body.append("author", author);
             body.append("isbn", isbn);
-            body.append("about", about);
+            body.append("description", description);
+            body.append("price", parseInt(price.replace(/,/g , '')));
 
             if (fileBook.raw) {
                 body.append("bookFile", fileBook.raw);
@@ -143,27 +150,30 @@ const AddBook = () => {
                 headers: {
                     "content-type": "multipart/form-data",
                 },
-                onUploadProgress: progressEvent => {
-                    console.log("loaded : ", progressUpload.loaded);
-                    console.log("total : ", progressUpload.total);
-                    let percentage = Math.floor((progressEvent.loaded / progressEvent.total) * 100);
-                    setProgressUpload(percentage);
 
-                    if (percentage <= 100) {
-                    setmodalProgressUpload(true);
-                    }
-                }
+                // onUploadProgress: progressEvent => {
+                //     console.log("loaded : ", progressUpload.loaded);
+                //     console.log("total : ", progressUpload.total);
+                //     let percentage = Math.floor((progressEvent.loaded / progressEvent.total) * 100);
+                //     setProgressUpload(percentage);
+
+                //     if (percentage <= 100) {
+                //         setmodalProgressUpload(true);
+                //     }
+                // }
             };
 
+            toggleLoading();
             const response = await API.post('/book', body, config);
 
             console.log("response book ", response);
             if (response.status == 200) {
+                toggleLoading();
                 setModalBook(true);
                 
-                setTimeout(() => {
-                    setProgressUpload(0);
-                }, 1000)
+                // setTimeout(() => {
+                //     setProgressUpload(0);
+                // }, 1000)
             }
 
         } catch (err) {
@@ -186,10 +196,12 @@ const AddBook = () => {
                             <Inputs type="text" placeholder="Pages" onChange={handleChangeBook} name="pages" />
                             <Inputs type="text" placeholder="Author" onChange={handleChangeBook} name="author" />
                             <Inputs type="text" placeholder="ISBN" onChange={handleChangeBook} name="isbn" />
+                            {/* <Inputs type="number" placeholder="Price" onChange={handleChangeBook} name="price" /> */}
+                            <NumberFormat thousandSeparator={true} style={{paddingLeft:"10px", paddingTop:"5px", paddingBottom:"5px"}} placeholder="Price" name="price" id="price" className="form-field w-100 mb-3" inputmode="numeric" onChange={handleChangeBook} />
                             
                             <CKEditor
                                 editor={ ClassicEditor }
-                                config={{placeholder: "About This Book..."}} 
+                                config={{placeholder: "Description This Book..."}} 
                                 data=""
                                 onReady={ editor => {
                                     // You can store the "editor" and use when it is needed.
@@ -225,7 +237,7 @@ const AddBook = () => {
                                 }
                             </div>
                             <div className="d-flex justify-content-end mb-5">
-                                <Buttons className="buttons-red font-weight-bold mt-2 mb-2"  type="submit" title="Add Book" icon={AddBooks} />
+                                <Buttons className="buttons-black font-weight-bold mt-2 mb-2"  type="submit" title="Add Book" icon={AddBooks} />
                             </div>
                         </Form>
                     </Col>
@@ -254,9 +266,25 @@ const AddBook = () => {
             </Modal>
 
 
+            {/* =========================== */}
+            {/* Modal Loading */}
+            {/* =========================== */}
+            <Modal size="lg" show={modalLoading} onHide={toggleLoading} className="d-flex justify-content-center align-items-center w-100">
+                <Modal.Body >
+                    <Loading />
+                </Modal.Body>
+            </Modal>
+
+
             <Modal size="lg" show={imageModal} onHide={handleCloseImage} className="d-flex justify-content-center align-items-center w-100">
                 <Modal.Body >
                     <img src={image.preview} alt="attach file" className="text-center img-fluid" />
+                </Modal.Body>
+            </Modal>
+
+            <Modal size="lg" show={modalFailed} onHide={toggleFailed} className="d-flex justify-content-center align-items-center w-100">
+                <Modal.Body >
+                    <span className="text-danger">Upload Failed</span>
                 </Modal.Body>
             </Modal>
         </Fragment>

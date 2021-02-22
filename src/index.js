@@ -5,6 +5,11 @@ import App from './pages/App';
 
 // style bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css';
+
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
+
+
 import { AppContextProvider } from './configs';
 
 ReactDOM.render(

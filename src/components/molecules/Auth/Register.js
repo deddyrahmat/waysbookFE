@@ -7,9 +7,6 @@ import {Buttons, Inputs} from '../../';// same ../../index.js take file Buttons
 import {AppContext, API, setAuthToken} from '../../../configs';
 import {Loading} from '../../../components';
 
-// json Fake Data
-import {Users} from '../../../FakeData';
-
 // styling
 import "./Auth.css";
 
@@ -127,7 +124,6 @@ const Register = ({titleModal, classModalButton  }) => {
     // process Register
     // ======================================================
     
-    console.log("user dari register",Users);
     console.log("state dari register",state);
     // console.log("email register",email);
     // console.log("pass dari register",password);
@@ -149,7 +145,7 @@ const Register = ({titleModal, classModalButton  }) => {
                                     <Inputs type="email" placeholder="Email" name="email" value={email} onChange={e => handleChangeRegister(e)} />
                                     <Inputs type="password" placeholder="Password" name="password" onChange={e => handleChangeRegister(e)} />
                                     <Inputs type="text" placeholder="Full Name" name="fullname" value={fullname} onChange={e => handleChangeRegister(e)} />
-                                    <Buttons className="buttons-red btn-block font-weight-bold mt-2 mb-2"  type="submit" title={titleModal} />
+                                    <Buttons className="buttons-black btn-block font-weight-bold mt-2 mb-2"  type="submit" title={titleModal} />
                                 </Form>
                                 <div className="text-link">
                                     Already have an account ? Klik <b className="link-here" 

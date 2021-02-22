@@ -5,6 +5,7 @@ import {
 } from "react-router-dom";
 import moment from 'moment';
 import Moment from 'react-moment';
+import NumberFormat from 'react-number-format';
 
 // component
 import {API} from '../../../configs';
@@ -44,7 +45,7 @@ const InfoDetailBook = () => {
     
     return isLoading ? (<Loading />) : (
         <Fragment>
-            <Container>
+            <Container className="height-content">
                 <Row>
                     <Col md="5">
                         <img src={book.thumbnail} alt="detail-book" className="image-detail-book" />
@@ -70,6 +71,20 @@ const InfoDetailBook = () => {
                         <div className="container-detail-book">
                             <h2 className="isbn-detail-book size-detail-book">ISBN</h2>
                             <small className="sub-detail-book">{book.isbn   }</small>
+                        </div>
+
+                        <div className="container-detail-book">
+                            <h2 className="isbn-detail-book size-detail-book">Price</h2>
+                            <small className="sub-detail-book">
+                                <NumberFormat 
+                                value={book.price} 
+                                displayType={'text'} 
+                                thousandSeparator={true} 
+                                prefix={'Rp. '} 
+                                renderText={
+                                    value => <small className="price-book d-block mt-3">{value}</small>
+                                } />
+                            </small>
                         </div>
 
 

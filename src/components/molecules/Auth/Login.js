@@ -136,7 +136,7 @@ const Login = ({titleModal, classModalButton, ...rest  }) => {
                                 <Form onSubmit={handleSubmit}>
                                     <Inputs type="email" placeholder="Email" name="email" value={email} onChange={e => handleChangeLogin(e)} />
                                     <Inputs type="password" placeholder="Password" name="password" onChange={e => handleChangeLogin(e)} />
-                                    <Buttons className="buttons-red btn-block font-weight-bold mt-2 mb-2"  type="submit" title={titleModal} />
+                                    <Buttons className="buttons-black btn-block font-weight-bold mt-2 mb-2"  type="submit" title={titleModal} />
                                 </Form>
                                 <div className="text-link">
                                     Don't have an account ? Klik <b className="link-here" 
