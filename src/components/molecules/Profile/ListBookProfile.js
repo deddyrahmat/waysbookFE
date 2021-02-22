@@ -30,21 +30,12 @@ const ListBookProfile = () => {
     // set modal for login failed
     const [detailBookFailed, setDetailBookFailed] = useState(false);
     const [messageFailed, setMessageFailed] = useState("");
+    const [projectItems, setProject] = useState([]);
     
     const handleCloseDetailBookFailed = () => setDetailBookFailed(false);
     const handleDetailBookFailed = () => setDetailBookFailed(true);
     // set modal for DetailBook failed
     // ======================================================
-
-    const handleListBook = (id) => {
-        if (!state.payment) {
-            handleDetailBookFailed();
-            setMessageFailed("please make a payment to read the latest books");
-        }else{
-            history.push(`/user/book/detail/${id}`)
-            // history.push(`${url}/detail/${id}`)
-        }
-    }
 
     useEffect(() => {
         const fetchUsers = async ( )=> {
@@ -63,6 +54,39 @@ const ListBookProfile = () => {
         fetchUsers();
     }, []);
 
+    const download = async (file) => {
+        try {
+            console.log("param e", file);
+            
+            let n = 1;
+
+            const response = await fetch(
+                file
+            );
+
+            console.log("respon download", response);
+
+
+            if (response.status === 200) {
+                console.log(file)
+                const blob = await response.blob();
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement("a");
+                link.href = url;
+                link.download = "project"+ n++;
+                document.body.appendChild(link);
+                link.click();
+                link.remove();
+                return { success: true };
+            }
+            // detailUser.purchasesbooks.map(async (photo) => {
+            // })
+            
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
     console.log("result detailUser Book", detailUser);
 
     return isLoading ? (<Loading className="d-flex justify-content-center align-items-center" />) : (
@@ -77,7 +101,7 @@ const ListBookProfile = () => {
                             </Col>
                         ):(
                             detailUser.purchasesbooks.map(book => (
-                                <Col sm="12" md="3" key={book.id} style={{cursor: 'pointer'}} onClick={() => book.bookFile}>
+                                <Col sm="12" md="3" key={book.id} style={{cursor: 'pointer'}} onClick={() => download(book.thumbnail)}>
                                     <img src={book.thumbnail} alt="list-books" className="img-fluid list-books" />
                                     <p className="font-weight-bold mb-1 mt-3 text-truncate">{book.title}</p>
                                     <p className="text-muted">{book.author}</p>
