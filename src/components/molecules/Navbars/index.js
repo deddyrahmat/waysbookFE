@@ -75,9 +75,9 @@ const Navbars = () => {
                                         <img src={state.avatar === null ? Avatar : state.avatar} alt="Logo" className="navbars-avatar rounded-circle" />
                                         <NavDropdown id="basic-nav-dropdown">
 
-                                            <NavDropdown.Item as={Link} to="/admin/addBook"  >
+                                            <NavDropdown.Item as={Link} to="/admin/books"  >
                                                 <FontAwesomeIcon icon={faBook} className="sidebar-icon" /> 
-                                                Add Book
+                                                Book
                                             </NavDropdown.Item>
 
                                             <NavDropdown.Divider />

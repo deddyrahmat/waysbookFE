@@ -11,7 +11,7 @@ import {
 
 // Component
 import {PrivateRoute, API} from '../../configs';
-import { DetailBook, MainContent, Profile, Subscribe, ReadBook, Navbars, Cart } from '../../components';
+import { DetailBook, MainContent, Profile, Navbars, Cart } from '../../components';
 import {AppContext} from '../../configs';
 import { LogoSidebar } from '../../assets';
 // import ReadBook from "../../components/molecules/DetailBook/ReadBook"
@@ -75,11 +75,6 @@ const SubMain=()=> {
             <DetailBook />
         );
     }
-    else if (location.pathname === `/user/book/read/${id}`) {
-        return(
-            <ReadBook />
-        );
-    }
     else{
         return (
             <div>
@@ -103,11 +98,6 @@ const Main =()=> {
     if (location.pathname === "/user/profile") {
         return(
             <Profile />
-        );
-    }
-    else if (location.pathname === "/user/subscribe") {
-        return(
-            <Subscribe />
         );
     }
     else if (location.pathname === "/user/cart") {

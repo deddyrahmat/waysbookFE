@@ -252,7 +252,7 @@ const AddBook = () => {
                 </Modal.Body>
                 {
                     modalBook == false ? (
-                    <Redirect to="/admin" />
+                    <Redirect to="/admin/books" />
                     ) : null
                 }
             </Modal>

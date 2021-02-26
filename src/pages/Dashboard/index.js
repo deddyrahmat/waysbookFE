@@ -11,7 +11,7 @@ import {
     useParams } from 'react-router-dom';
 
 // components
-import { Navbars, Transactions, AddBook } from '../../components'
+import { Navbars, Transactions, AddBook, Books } from '../../components'
 import { PrivateRouteAdmin } from '../../configs';
 
 // styling
@@ -63,6 +63,11 @@ const Main =()=> {
     if (location.pathname === "/admin/addBook") {
         return(
             <AddBook />
+        );
+    }
+    else if (location.pathname === "/admin/books") {
+        return(
+            <Books />
         );
     }
     else{
