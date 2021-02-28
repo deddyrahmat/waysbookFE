@@ -59,3 +59,21 @@
     width: 100%;
     object-fit: cover;
 }
+
+.card-image-profile{
+    object-fit: cover;
+    text-align: center;
+    margin-top: 4px;
+    /* margin-bottom: 3px; */
+}
+
+.curson-pointer{
+    cursor: pointer;
+}
+
+.avatar-profile{
+    width: 60px !important;
+    height: 60px !important;
+    object-fit: cover !important;
+    border-radius: 50%;
+}
